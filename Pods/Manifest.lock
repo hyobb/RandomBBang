@@ -1,0 +1,46 @@
+PODS:
+  - ReactorKit (2.1.0):
+    - RxSwift (~> 5.0)
+    - WeakMapTable (~> 1.1)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
+  - SnapKit (5.0.1)
+  - Then (2.6.0)
+  - UIColor_Hex_Swift (4.2.0)
+  - WeakMapTable (1.1.0)
+
+DEPENDENCIES:
+  - ReactorKit
+  - RxCocoa
+  - SnapKit
+  - Then
+  - UIColor_Hex_Swift
+
+SPEC REPOS:
+  trunk:
+    - ReactorKit
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - Then
+    - UIColor_Hex_Swift
+    - WeakMapTable
+
+SPEC CHECKSUMS:
+  ReactorKit: 12a93358c554bb3f167b16b14c40374fa9cd5acd
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
+  UIColor_Hex_Swift: bc07fc197421ee896b9ed6dcfa2054b7fbf75145
+  WeakMapTable: d0327eda092be6a8f7c532942ae98dc7948f5d32
+
+PODFILE CHECKSUM: 84711a0e11bb1249e79519fa05aeb4996564d587
+
+COCOAPODS: 1.8.4
