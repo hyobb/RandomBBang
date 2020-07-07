@@ -24,6 +24,8 @@ class HomeViewController: UIViewController, View {
         $0.font = UIFont.systemFont(ofSize: 34.0, weight: .bold)
     }
     
+    private let newGameContainerView = NewGameContainerView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,19 +42,48 @@ class HomeViewController: UIViewController, View {
             make.leading.equalToSuperview().offset(10.0)
         }
         
-        let newGameContainerView = NewGameContainerView()
         view.addSubview(newGameContainerView)
         newGameContainerView.snp.makeConstraints { make in
             make.top.equalTo(header.snp.bottom)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().inset(24)
         }
+        
+        newGameContainerView.playerCollectionView.dataSource = self
+        newGameContainerView.playerCollectionView.delegate = self
+        newGameContainerView.playerCollectionView.register(PlayerCollectionViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(PlayerCollectionViewCell.self))
+        setupFlowLayout()
     }
     
     func bind(reactor: HomeViewReactor) {
         
     }
 }
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(PlayerCollectionViewCell.self), for: indexPath) as! PlayerCollectionViewCell
+        cell.setup(title: "\(indexPath.row)")
+
+        return cell
+    }
+    
+    private func setupFlowLayout() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.sectionInset = UIEdgeInsets.zero
+        flowLayout.minimumInteritemSpacing = 10
+        flowLayout.minimumLineSpacing = 10
+        
+        let halfWidth = UIScreen.main.bounds.width / 2
+        flowLayout.itemSize = CGSize(width: halfWidth * 0.8 , height: halfWidth * 0.8)
+        newGameContainerView.playerCollectionView.collectionViewLayout = flowLayout
+    }
+}
+
 
 class NewGameContainerView: UIView {
     private let costContainerview = UIView().then {
@@ -94,7 +125,7 @@ class NewGameContainerView: UIView {
         $0.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
     }
     
-    private let playerCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout().then {
+    let playerCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout().then {
         $0.headerReferenceSize = CGSize(width: UIScreen.main.bounds.width, height: 48)
         $0.scrollDirection = .vertical
         $0.itemSize = CGSize(width: UIScreen.main.bounds.width / 2.0, height: 40)
