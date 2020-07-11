@@ -56,7 +56,24 @@ class HomeViewController: UIViewController, View {
     }
     
     func bind(reactor: HomeViewReactor) {
+        // Action
+        newGameContainerView.increaseButton.rx.tap
+            .map { Reactor.Action.addPlayer }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+    
+        newGameContainerView.decreaseButton.rx.tap
+            .map { Reactor.Action.removePlayer }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
+        // State
+        
+        reactor.state.map { $0.playerCount }
+            .distinctUntilChanged()
+            .map { "\($0)" }
+            .bind(to: newGameContainerView.playerCountLabel.rx.text)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -104,12 +121,11 @@ class NewGameContainerView: UIView {
     private let playerIconLabel = UILabel().then {
         $0.text = "🤦🏻‍♂️"
     }
-    private let playerCountLabel = UILabel().then {
+    let playerCountLabel = UILabel().then {
         $0.textColor = .white
-        $0.text = "0"
     }
     
-    private let increaseButton = UIButton().then {
+    let increaseButton = UIButton().then {
         $0.setTitle("+", for: .normal)
         $0.backgroundColor = .white
         $0.setTitleColor(.darkGray, for: .normal)
@@ -117,7 +133,7 @@ class NewGameContainerView: UIView {
         $0.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
     }
 
-    private let decreaseButton = UIButton().then {
+    let decreaseButton = UIButton().then {
         $0.setTitle("-", for: .normal)
         $0.setTitleColor(.darkGray, for: .normal)
         $0.backgroundColor = .white
