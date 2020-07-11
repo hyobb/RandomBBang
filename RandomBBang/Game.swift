@@ -15,19 +15,26 @@ struct Game {
     init() {
         self.cost = 0
         self.players = [
-            Player(name: "🦄", cost: 0),
-            Player(name: "🐷", cost: 0),
-            Player(name: "🐝", cost: 0),
-            Player(name: "🐥", cost: 0),
-            Player(name: "🦋", cost: 0),
-            Player(name: "🦀", cost: 0),
-            Player(name: "🐈", cost: 0),
-            Player(name: "🦕", cost: 0)
+            Player(name: "🦄", cost: 0, isHidden: false),
+            Player(name: "🐷", cost: 0, isHidden: false),
+            Player(name: "🐝", cost: 0, isHidden: false),
+            Player(name: "🐥", cost: 0, isHidden: false),
+            Player(name: "🦋", cost: 0, isHidden: true),
+            Player(name: "🦀", cost: 0, isHidden: true),
+            Player(name: "🐈", cost: 0, isHidden: true),
+            Player(name: "🦕", cost: 0, isHidden: true)
         ]
     }
 }
 
-struct Player {
+class Player {
     var name: String
     var cost: Int
+    var isHidden: Bool
+    
+    init(name: String, cost: Int, isHidden: Bool) {
+        self.name = name
+        self.cost = cost
+        self.isHidden = isHidden
+    }
 }

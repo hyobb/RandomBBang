@@ -26,6 +26,12 @@ class HomeViewController: UIViewController, View {
     
     private let newGameContainerView = NewGameContainerView()
     
+    private let startButton = UIButton().then {
+        $0.setTitle("시작", for: .normal)
+        $0.frame = CGRect(x: 0, y: 0, width: 300, height: 44)
+        $0.backgroundColor = .green
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,9 +55,13 @@ class HomeViewController: UIViewController, View {
             make.width.equalToSuperview().inset(24)
         }
         
-//        newGameContainerView.playerCollectionView.dataSource = self
-//        newGameContainerView.playerCollectionView.delegate = self
         newGameContainerView.playerCollectionView.register(PlayerCollectionViewCell.self, forCellWithReuseIdentifier: PlayerCollectionViewCell.reuseIdentifier)
+        
+        view.addSubview(startButton)
+        startButton.snp.makeConstraints { make in
+            make.top.equalTo(newGameContainerView.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
         setupFlowLayout()
     }
     
@@ -67,36 +77,44 @@ class HomeViewController: UIViewController, View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        
+        newGameContainerView.costTextField.rx.text
+            .distinctUntilChanged()
+            .map { Reactor.Action.didChangeCost($0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
         // State
-        
         reactor.state.map { $0.playerCount }
             .distinctUntilChanged()
             .map { "\($0)" }
             .bind(to: newGameContainerView.playerCountLabel.rx.text)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.players }
+        reactor.state.map { $0.game.players.filter { !$0.isHidden } }
             .bind(to: newGameContainerView.playerCollectionView.rx.items(cellIdentifier: PlayerCollectionViewCell.reuseIdentifier, cellType: PlayerCollectionViewCell.self)) { indexPath, player, cell in
                 cell.setup(title: player.name)
             }
             .disposed(by: disposeBag)
+        
+        // View
+        
+        newGameContainerView.startButton.rx.tap.bind {
+            print("sdfsdf")
+            self.newGameContainerView.backgroundColor = .green
+        }
+        
+        startButton.rx.tap.bind {
+            print("")
+            print(reactor)
+            dump(reactor)
+        }
+        
+        // Tap Event button.rx.tap.bind { [weak self] in self?.onTapButton() }.disposed(by: disposeBag)
+
     }
 }
 
 extension HomeViewController {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 5
-//    }
-    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(PlayerCollectionViewCell.self), for: indexPath) as! PlayerCollectionViewCell
-//        cell.setup(title: "\(indexPath.row)")
-//
-//        return cell
-//    }
-    
     private func setupFlowLayout() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets.zero
@@ -106,6 +124,11 @@ extension HomeViewController {
         let halfWidth = UIScreen.main.bounds.width / 2
         flowLayout.itemSize = CGSize(width: halfWidth * 0.8 , height: halfWidth * 0.8)
         newGameContainerView.playerCollectionView.collectionViewLayout = flowLayout
+    }
+    
+    func startGame() {
+        print("start")
+        dump(reactor)
     }
 }
 
@@ -117,7 +140,7 @@ class NewGameContainerView: UIView {
     private let costIconLabel = UILabel().then {
         $0.text = "💸"
     }
-    private let costTextField = UITextField().then {
+    let costTextField = UITextField().then {
         $0.backgroundColor = .none
         $0.frame = CGRect(x: 0, y: 0, width: 200, height: 24)
         $0.keyboardType = .numberPad
@@ -160,7 +183,11 @@ class NewGameContainerView: UIView {
         $0.backgroundColor = UIColor.white
     }
     
-    private let startButton = UIButton()
+    let startButton = UIButton().then {
+        $0.setTitle("시작하기", for: .normal)
+        $0.backgroundColor = .darkGray
+        $0.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
+    }
     
     init() {
         super.init(frame: .zero)
@@ -231,10 +258,16 @@ class NewGameContainerView: UIView {
         
         
         addSubview(playerCollectionView)
-        playerCollectionView.snp.remakeConstraints {
-            $0.width.centerX.equalToSuperview()
-            $0.top.equalTo(playerContainerView.snp.bottom).offset(15)
-            $0.bottom.equalToSuperview()
+        playerCollectionView.snp.remakeConstraints { make in
+            make.width.centerX.equalToSuperview()
+            make.top.equalTo(playerContainerView.snp.bottom).offset(15)
+            make.bottom.equalToSuperview()
+        }
+        
+        addSubview(startButton)
+        startButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(playerCollectionView.snp.bottom).offset(20)
         }
     }
     

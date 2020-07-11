@@ -14,11 +14,13 @@ class HomeViewReactor: Reactor {
     enum Action {
         case addPlayer
         case removePlayer
+        case didChangeCost(String?)
     }
 
     enum Mutation {
         case increasePlayerCount
         case decreasePlayerCount
+        case setGameCost(Int)
     }
 
     struct State {
@@ -41,6 +43,9 @@ class HomeViewReactor: Reactor {
             return Observable.just(Mutation.increasePlayerCount)
         case .removePlayer:
             return Observable.just(Mutation.decreasePlayerCount)
+        case .didChangeCost(let string):
+            guard let costString = string, let cost = Int(costString) else { return .empty() }
+            return Observable.just(Mutation.setGameCost(cost))
         }
     }
 
@@ -49,11 +54,33 @@ class HomeViewReactor: Reactor {
         
         switch mutation {
         case .increasePlayerCount:
+            guard newState.playerCount < 8 else { return newState }
+            
             newState.playerCount += 1
+            for (index, player) in newState.game.players.enumerated() {
+                if index < newState.playerCount {
+                    player.isHidden = false
+                } else {
+                    player.isHidden = true
+                }
+            }
         case .decreasePlayerCount:
+            guard newState.playerCount > 2 else { return newState }
+            
             newState.playerCount -= 1
+            for (index, player) in newState.game.players.enumerated() {
+                if index < newState.playerCount {
+                    player.isHidden = false
+                } else {
+                    player.isHidden = true
+                }
+            }
+        case .setGameCost(let cost):
+            newState.game.cost = cost
+            
+            print(newState.game.cost)
         }
-
+        
         return newState
     }
 }
