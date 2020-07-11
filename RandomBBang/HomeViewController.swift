@@ -67,6 +67,8 @@ class HomeViewController: UIViewController, View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
+        
+        
         // State
         
         reactor.state.map { $0.playerCount }
@@ -74,6 +76,12 @@ class HomeViewController: UIViewController, View {
             .map { "\($0)" }
             .bind(to: newGameContainerView.playerCountLabel.rx.text)
             .disposed(by: disposeBag)
+        
+//        reactor.state.map { $0.playerCount }
+//            .bind(to: newGameContainerView.playerCollectionView.rx.items(cellIdentifier: "cell")) {
+//                
+//        }
+            
     }
 }
 

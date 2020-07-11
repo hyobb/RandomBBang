@@ -23,13 +23,15 @@ class HomeViewReactor: Reactor {
 
     struct State {
         var playerCount: Int
+        var game: Game
     }
     
     let initialState: State
     
     init() {
         self.initialState = State(
-            playerCount: 4
+            playerCount: 4,
+            game: Game()
         )
     }
     

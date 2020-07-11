@@ -15,6 +15,7 @@
 		D73A7BF02497125B006F4DD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D73A7BEF2497125B006F4DD5 /* Assets.xcassets */; };
 		D73A7BF32497125B006F4DD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D73A7BF12497125B006F4DD5 /* LaunchScreen.storyboard */; };
 		D756460C24971A0C006C0D41 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D756460B24971A0C006C0D41 /* TabBarView.swift */; };
+		D75809C924B97B9C0054E494 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75809C824B97B9C0054E494 /* Game.swift */; };
 		D771676424972FF00015C7D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D771676324972FF00015C7D9 /* HomeViewController.swift */; };
 		D7716766249730410015C7D9 /* HomeViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7716765249730410015C7D9 /* HomeViewReactor.swift */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		D73A7BF22497125B006F4DD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D73A7BF42497125B006F4DD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D756460B24971A0C006C0D41 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		D75809C824B97B9C0054E494 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		D771676324972FF00015C7D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D7716765249730410015C7D9 /* HomeViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewReactor.swift; sourceTree = "<group>"; };
 		E97536905AC795362AEF9B33 /* Pods-RandomBBang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomBBang.release.xcconfig"; path = "Target Support Files/Pods-RandomBBang/Pods-RandomBBang.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				D771676324972FF00015C7D9 /* HomeViewController.swift */,
 				D7716765249730410015C7D9 /* HomeViewReactor.swift */,
 				D704EEA324B4B5850036B496 /* PlayerCollectionViewCell.swift */,
+				D75809C824B97B9C0054E494 /* Game.swift */,
 			);
 			path = RandomBBang;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 			files = (
 				D73A7BE724971255006F4DD5 /* AppDelegate.swift in Sources */,
 				D7716766249730410015C7D9 /* HomeViewReactor.swift in Sources */,
+				D75809C924B97B9C0054E494 /* Game.swift in Sources */,
 				D771676424972FF00015C7D9 /* HomeViewController.swift in Sources */,
 				D756460C24971A0C006C0D41 /* TabBarView.swift in Sources */,
 				D73A7BE924971255006F4DD5 /* SceneDelegate.swift in Sources */,
