@@ -49,9 +49,9 @@ class HomeViewController: UIViewController, View {
             make.width.equalToSuperview().inset(24)
         }
         
-        newGameContainerView.playerCollectionView.dataSource = self
-        newGameContainerView.playerCollectionView.delegate = self
-        newGameContainerView.playerCollectionView.register(PlayerCollectionViewCell.self, forCellWithReuseIdentifier: NSStringFromClass(PlayerCollectionViewCell.self))
+//        newGameContainerView.playerCollectionView.dataSource = self
+//        newGameContainerView.playerCollectionView.delegate = self
+        newGameContainerView.playerCollectionView.register(PlayerCollectionViewCell.self, forCellWithReuseIdentifier: PlayerCollectionViewCell.reuseIdentifier)
         setupFlowLayout()
     }
     
@@ -77,25 +77,25 @@ class HomeViewController: UIViewController, View {
             .bind(to: newGameContainerView.playerCountLabel.rx.text)
             .disposed(by: disposeBag)
         
-//        reactor.state.map { $0.playerCount }
-//            .bind(to: newGameContainerView.playerCollectionView.rx.items(cellIdentifier: "cell")) {
-//                
-//        }
-            
+        reactor.state.map { $0.game.players }
+            .bind(to: newGameContainerView.playerCollectionView.rx.items(cellIdentifier: PlayerCollectionViewCell.reuseIdentifier, cellType: PlayerCollectionViewCell.self)) { indexPath, player, cell in
+                cell.setup(title: player.name)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
+extension HomeViewController {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return 5
+//    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(PlayerCollectionViewCell.self), for: indexPath) as! PlayerCollectionViewCell
-        cell.setup(title: "\(indexPath.row)")
-
-        return cell
-    }
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(PlayerCollectionViewCell.self), for: indexPath) as! PlayerCollectionViewCell
+//        cell.setup(title: "\(indexPath.row)")
+//
+//        return cell
+//    }
     
     private func setupFlowLayout() {
         let flowLayout = UICollectionViewFlowLayout()
