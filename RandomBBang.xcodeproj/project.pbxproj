@@ -18,6 +18,8 @@
 		D75809C924B97B9C0054E494 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75809C824B97B9C0054E494 /* Game.swift */; };
 		D771676424972FF00015C7D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D771676324972FF00015C7D9 /* HomeViewController.swift */; };
 		D7716766249730410015C7D9 /* HomeViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7716765249730410015C7D9 /* HomeViewReactor.swift */; };
+		D7843B8F24BAE3CA00E3003E /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7843B8E24BAE3CA00E3003E /* ResultViewController.swift */; };
+		D7843B9124BAE40C00E3003E /* ResultViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7843B9024BAE40C00E3003E /* ResultViewReactor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		D75809C824B97B9C0054E494 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		D771676324972FF00015C7D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D7716765249730410015C7D9 /* HomeViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewReactor.swift; sourceTree = "<group>"; };
+		D7843B8E24BAE3CA00E3003E /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		D7843B9024BAE40C00E3003E /* ResultViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewReactor.swift; sourceTree = "<group>"; };
 		E97536905AC795362AEF9B33 /* Pods-RandomBBang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomBBang.release.xcconfig"; path = "Target Support Files/Pods-RandomBBang/Pods-RandomBBang.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +103,8 @@
 				D7716765249730410015C7D9 /* HomeViewReactor.swift */,
 				D704EEA324B4B5850036B496 /* PlayerCollectionViewCell.swift */,
 				D75809C824B97B9C0054E494 /* Game.swift */,
+				D7843B8E24BAE3CA00E3003E /* ResultViewController.swift */,
+				D7843B9024BAE40C00E3003E /* ResultViewReactor.swift */,
 			);
 			path = RandomBBang;
 			sourceTree = "<group>";
@@ -221,7 +227,9 @@
 				D73A7BE724971255006F4DD5 /* AppDelegate.swift in Sources */,
 				D7716766249730410015C7D9 /* HomeViewReactor.swift in Sources */,
 				D75809C924B97B9C0054E494 /* Game.swift in Sources */,
+				D7843B8F24BAE3CA00E3003E /* ResultViewController.swift in Sources */,
 				D771676424972FF00015C7D9 /* HomeViewController.swift in Sources */,
+				D7843B9124BAE40C00E3003E /* ResultViewReactor.swift in Sources */,
 				D756460C24971A0C006C0D41 /* TabBarView.swift in Sources */,
 				D73A7BE924971255006F4DD5 /* SceneDelegate.swift in Sources */,
 				D704EEA424B4B5850036B496 /* PlayerCollectionViewCell.swift in Sources */,

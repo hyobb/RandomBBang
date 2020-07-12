@@ -8,14 +8,13 @@
 
 import UIKit
 
-
 import ReactorKit
 import RxCocoa
 import RxSwift
 
 class HomeViewController: UIViewController, View {
     var disposeBag = DisposeBag()
-    
+			
     private let header = UIView()
     
     private let headerTitle = UILabel().then {
@@ -98,19 +97,17 @@ class HomeViewController: UIViewController, View {
         
         // View
         
-        newGameContainerView.startButton.rx.tap.bind {
-            print("sdfsdf")
-            self.newGameContainerView.backgroundColor = .green
-        }
-        
-        startButton.rx.tap.bind {
-            print("")
-            print(reactor)
-            dump(reactor)
-        }
-        
-        // Tap Event button.rx.tap.bind { [weak self] in self?.onTapButton() }.disposed(by: disposeBag)
-
+        startButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                dump(self.reactor?.currentState.game)
+                print("view tapped")
+                let resultViewController = ResultViewController()
+                resultViewController.reactor = ResultViewReactor(game: reactor.currentState.game)
+                
+                self.navigationController?.pushViewController(resultViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -181,12 +178,6 @@ class NewGameContainerView: UIView {
     }).then {
         $0.allowsSelection = true
         $0.backgroundColor = UIColor.white
-    }
-    
-    let startButton = UIButton().then {
-        $0.setTitle("시작하기", for: .normal)
-        $0.backgroundColor = .darkGray
-        $0.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
     }
     
     init() {
@@ -262,12 +253,6 @@ class NewGameContainerView: UIView {
             make.width.centerX.equalToSuperview()
             make.top.equalTo(playerContainerView.snp.bottom).offset(15)
             make.bottom.equalToSuperview()
-        }
-        
-        addSubview(startButton)
-        startButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(playerCollectionView.snp.bottom).offset(20)
         }
     }
     
