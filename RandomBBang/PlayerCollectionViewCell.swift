@@ -30,5 +30,6 @@ class PlayerCollectionViewCell: UICollectionViewCell {
     func setup(title: String) {
         textLabel.textColor = .brown
         textLabel.text = title
+        textLabel.textAlignment = .center
     }
 }

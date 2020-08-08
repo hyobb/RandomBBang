@@ -17,6 +17,7 @@
 		D756460C24971A0C006C0D41 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D756460B24971A0C006C0D41 /* TabBarView.swift */; };
 		D75809C924B97B9C0054E494 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75809C824B97B9C0054E494 /* Game.swift */; };
 		D7590C0924DE52F200F2FCF1 /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7590C0824DE52F200F2FCF1 /* PlayerTableViewCell.swift */; };
+		D7590C0B24DE665C00F2FCF1 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7590C0A24DE665C00F2FCF1 /* extensions.swift */; };
 		D771676424972FF00015C7D9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D771676324972FF00015C7D9 /* HomeViewController.swift */; };
 		D7716766249730410015C7D9 /* HomeViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7716765249730410015C7D9 /* HomeViewReactor.swift */; };
 		D7843B8F24BAE3CA00E3003E /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7843B8E24BAE3CA00E3003E /* ResultViewController.swift */; };
@@ -37,6 +38,7 @@
 		D756460B24971A0C006C0D41 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D75809C824B97B9C0054E494 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		D7590C0824DE52F200F2FCF1 /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
+		D7590C0A24DE665C00F2FCF1 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		D771676324972FF00015C7D9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D7716765249730410015C7D9 /* HomeViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewReactor.swift; sourceTree = "<group>"; };
 		D7843B8E24BAE3CA00E3003E /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				D7843B8E24BAE3CA00E3003E /* ResultViewController.swift */,
 				D7843B9024BAE40C00E3003E /* ResultViewReactor.swift */,
 				D7590C0824DE52F200F2FCF1 /* PlayerTableViewCell.swift */,
+				D7590C0A24DE665C00F2FCF1 /* extensions.swift */,
 			);
 			path = RandomBBang;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				D73A7BE724971255006F4DD5 /* AppDelegate.swift in Sources */,
 				D7716766249730410015C7D9 /* HomeViewReactor.swift in Sources */,
 				D7590C0924DE52F200F2FCF1 /* PlayerTableViewCell.swift in Sources */,
+				D7590C0B24DE665C00F2FCF1 /* extensions.swift in Sources */,
 				D75809C924B97B9C0054E494 /* Game.swift in Sources */,
 				D7843B8F24BAE3CA00E3003E /* ResultViewController.swift in Sources */,
 				D771676424972FF00015C7D9 /* HomeViewController.swift in Sources */,
