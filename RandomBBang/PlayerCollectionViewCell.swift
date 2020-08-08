@@ -10,9 +10,9 @@ import UIKit
 import SnapKit
 
 class PlayerCollectionViewCell: UICollectionViewCell {
-    private let textLabel = UILabel()
-    
     static let reuseIdentifier = "PlayerCollectionViewCell"
+    
+    private let textLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

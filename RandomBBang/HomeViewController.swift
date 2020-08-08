@@ -122,11 +122,6 @@ extension HomeViewController {
         flowLayout.itemSize = CGSize(width: halfWidth * 0.8 , height: halfWidth * 0.8)
         newGameContainerView.playerCollectionView.collectionViewLayout = flowLayout
     }
-    
-    func startGame() {
-        print("start")
-        dump(reactor)
-    }
 }
 
 
@@ -206,10 +201,8 @@ class NewGameContainerView: UIView {
         
         costContainerview.addSubview(costTextField)
         costTextField.snp.makeConstraints { make in
-//            make.width.lessThanOrEqualTo(costContainerview.snp.width).offset(60)
             make.width.equalTo(200)
             make.centerY.equalToSuperview()
-//            make.height.equalToSuperview().inset(6)
             make.left.equalTo(costIconLabel.snp.right).offset(12)
         }
         costTextField.addBottomBorder()
@@ -249,7 +242,7 @@ class NewGameContainerView: UIView {
         
         
         addSubview(playerCollectionView)
-        playerCollectionView.snp.remakeConstraints { make in
+        playerCollectionView.snp.makeConstraints { make in
             make.width.centerX.equalToSuperview()
             make.top.equalTo(playerContainerView.snp.bottom).offset(15)
             make.bottom.equalToSuperview()
