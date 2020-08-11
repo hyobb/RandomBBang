@@ -23,9 +23,7 @@ class HomeViewController: UIViewController, View {
         $0.font = UIFont.systemFont(ofSize: 34.0, weight: .bold)
     }
     
-    private let newGameContainerView = NewGameContainerView().then {
-        $0.addShadow()
-    }
+    private let newGameContainerView = NewGameContainerView()
     
     private let startButton = UIButton().then {
         $0.setTitle("랜덤빵 시작하기", for: .normal)
@@ -111,16 +109,21 @@ class HomeViewController: UIViewController, View {
             }
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.players.filter { !$0.isHidden }.count }
+        reactor.state.map { $0.playerCount }
             .map { $0 < 8 }
             .bind(to: newGameContainerView.increaseButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.players.filter { !$0.isHidden }.count }
+        reactor.state.map { $0.playerCount }
             .map { $0 > 2 }
             .bind(to: newGameContainerView.decreaseButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
+        reactor.state.map { $0.game.cost }
+            .map { $0 > 0 }
+            .bind(to: startButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+            
         
         
         
@@ -129,10 +132,9 @@ class HomeViewController: UIViewController, View {
         startButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
-                dump(self.reactor?.currentState.game)
-                print("view tapped")
+    
                 let resultViewController = ResultViewController()
-                resultViewController.reactor = ResultViewReactor(game: reactor.currentState.game)
+                resultViewController.reactor = ResultViewReactor(game: reactor.currentState.game, playerCount: reactor.currentState.playerCount)
                 
                 self.navigationController?.pushViewController(resultViewController, animated: true)
             })
@@ -210,6 +212,7 @@ class NewGameContainerView: UIView {
         
         self.backgroundColor = UIColor.primaryGray
         self.addCornerRadius()
+        self.addShadow()
         
         addSubview(costContainerview)
         costContainerview.snp.makeConstraints { make in

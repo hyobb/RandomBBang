@@ -20,13 +20,14 @@ class ResultViewReactor: Reactor {
     }
     
     struct State {
+        var playerCount: Int
         var game: Game
     }
     
     let initialState: State
     
-    init(game: Game) {
-        let playerCount = game.players.filter { !$0.isHidden }.count
+    init(game: Game, playerCount: Int) {
+        let playerCount = playerCount
         let cost = game.cost
         let costDividedBy10 = cost / 10
         var costs: [Int] = []
@@ -45,12 +46,7 @@ class ResultViewReactor: Reactor {
             } else {
                 costs.append(0)
             }
-            
-            
-            print(i)
         }
-        
-        
         
         let sum = costs.reduce(0, +)
         
@@ -61,15 +57,11 @@ class ResultViewReactor: Reactor {
         }
         
         costs.shuffle()
-        print(costs)
-        print(costs.reduce(0, +) == cost)
         
         game.players.filter { !$0.isHidden }.forEach { player in
             player.cost = costs.popLast()!
         }
         
-        dump(game.players)
-        
-        self.initialState = State(game: game)
+        self.initialState = State(playerCount: playerCount, game: game)
     }
 }
