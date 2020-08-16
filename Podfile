@@ -14,4 +14,7 @@ target 'RandomBBang' do
   pod 'Then'
   pod 'UIColor_Hex_Swift'
   pod 'Motion', '~> 3.1.0'
+  
+  # Google AdMob
+  pod 'Google-Mobile-Ads-SDK'
 end

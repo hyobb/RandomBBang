@@ -9,6 +9,8 @@
 import Foundation
 
 struct Helper {
+    static let adUnitID = "ca-app-pub-3940256099942544/2934735716"
+//    ca-app-pub-9984637041740692/7562383028
     static let currencyFormatter = NumberFormatter().then {
         $0.usesGroupingSeparator = true
         $0.numberStyle = .currency
