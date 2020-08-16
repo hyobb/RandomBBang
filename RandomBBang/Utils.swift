@@ -13,8 +13,9 @@ struct Helper {
 //    ca-app-pub-9984637041740692/7562383028
     static let currencyFormatter = NumberFormatter().then {
         $0.usesGroupingSeparator = true
-        $0.numberStyle = .currency
+        $0.numberStyle = .currencyAccounting
         $0.locale = Locale.current
+        $0.maximumFractionDigits = 0
     }
     
     static func getCurrencyString(from number: Int) -> String {
@@ -32,4 +33,12 @@ struct Helper {
         }
         return nil
     }
+    
+    static let ceilScale: Double = { 
+        if Locale.current.identifier == "en_KR" {
+            return 1000
+        } else {
+            return 10
+        }
+    }()
 }

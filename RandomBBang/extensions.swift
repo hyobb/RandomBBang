@@ -18,26 +18,22 @@ extension UIColor {
     static let primaryBlue = UIColor("#2078dd")
 }
 
-extension String {
-    
-}
-
 extension ObservableType where Element == String {
     func valueToCurrencyFormatted() -> Observable<Element> {
         return asObservable().flatMap { valueString -> Observable<Element> in
-          var amountWithPrefix = valueString
-          var number: NSNumber!
-
-          let regex = try! NSRegularExpression(pattern: "[^0-9]", options: .caseInsensitive)
-          amountWithPrefix = regex.stringByReplacingMatches(in: amountWithPrefix, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, valueString.count), withTemplate: "")
-
-          let double = (amountWithPrefix as NSString).doubleValue
-          number = NSNumber(value: (double / 100))
-
-          guard number != 0 as NSNumber else {
-            return Observable.just("")
-          }
+            var amountWithPrefix = valueString
+            var number: NSNumber!
+            
+            let regex = try! NSRegularExpression(pattern: "[^0-9]", options: .caseInsensitive)
+            amountWithPrefix = regex.stringByReplacingMatches(in: amountWithPrefix, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, valueString.count), withTemplate: "")
+            
+            let double = (amountWithPrefix as NSString).doubleValue
+            number = NSNumber(value: (double / 100))
+            
+            guard number != 0 as NSNumber else {
+                return Observable.just("")
+            }
             return Observable.just(Helper.getCurrencyString(from: Int(double)))
-      }
+        }
   }
 }
