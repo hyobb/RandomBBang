@@ -24,6 +24,7 @@
 		D7843B9124BAE40C00E3003E /* ResultViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7843B9024BAE40C00E3003E /* ResultViewReactor.swift */; };
 		D7E5590024E65C8400E4C749 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E558FF24E65C8400E4C749 /* Utils.swift */; };
 		D7E5590224E6738C00E4C749 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E5590124E6738B00E4C749 /* TimerViewController.swift */; };
+		D7E5590424E8FA6A00E4C749 /* GADBannerBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E5590324E8FA6900E4C749 /* GADBannerBaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		D7843B9024BAE40C00E3003E /* ResultViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewReactor.swift; sourceTree = "<group>"; };
 		D7E558FF24E65C8400E4C749 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D7E5590124E6738B00E4C749 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		D7E5590324E8FA6900E4C749 /* GADBannerBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADBannerBaseViewController.swift; sourceTree = "<group>"; };
 		E97536905AC795362AEF9B33 /* Pods-RandomBBang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomBBang.release.xcconfig"; path = "Target Support Files/Pods-RandomBBang/Pods-RandomBBang.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 				D7590C0824DE52F200F2FCF1 /* PlayerTableViewCell.swift */,
 				D7590C0A24DE665C00F2FCF1 /* extensions.swift */,
 				D7E558FF24E65C8400E4C749 /* Utils.swift */,
+				D7E5590324E8FA6900E4C749 /* GADBannerBaseViewController.swift */,
 			);
 			path = RandomBBang;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				D7843B8F24BAE3CA00E3003E /* ResultViewController.swift in Sources */,
 				D771676424972FF00015C7D9 /* HomeViewController.swift in Sources */,
 				D7843B9124BAE40C00E3003E /* ResultViewReactor.swift in Sources */,
+				D7E5590424E8FA6A00E4C749 /* GADBannerBaseViewController.swift in Sources */,
 				D756460C24971A0C006C0D41 /* TabBarView.swift in Sources */,
 				D73A7BE924971255006F4DD5 /* SceneDelegate.swift in Sources */,
 				D7E5590224E6738C00E4C749 /* TimerViewController.swift in Sources */,
