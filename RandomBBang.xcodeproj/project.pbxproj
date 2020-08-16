@@ -22,6 +22,8 @@
 		D7716766249730410015C7D9 /* HomeViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7716765249730410015C7D9 /* HomeViewReactor.swift */; };
 		D7843B8F24BAE3CA00E3003E /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7843B8E24BAE3CA00E3003E /* ResultViewController.swift */; };
 		D7843B9124BAE40C00E3003E /* ResultViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7843B9024BAE40C00E3003E /* ResultViewReactor.swift */; };
+		D7E5590024E65C8400E4C749 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E558FF24E65C8400E4C749 /* Utils.swift */; };
+		D7E5590224E6738C00E4C749 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E5590124E6738B00E4C749 /* TimerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		D7716765249730410015C7D9 /* HomeViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewReactor.swift; sourceTree = "<group>"; };
 		D7843B8E24BAE3CA00E3003E /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		D7843B9024BAE40C00E3003E /* ResultViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewReactor.swift; sourceTree = "<group>"; };
+		D7E558FF24E65C8400E4C749 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		D7E5590124E6738B00E4C749 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		E97536905AC795362AEF9B33 /* Pods-RandomBBang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomBBang.release.xcconfig"; path = "Target Support Files/Pods-RandomBBang/Pods-RandomBBang.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +82,7 @@
 		D73A7BDA24971255006F4DD5 = {
 			isa = PBXGroup;
 			children = (
+				D7E5590124E6738B00E4C749 /* TimerViewController.swift */,
 				D73A7BE524971255006F4DD5 /* RandomBBang */,
 				D73A7BE424971255006F4DD5 /* Products */,
 				AD2254772282C971CDBA25A8 /* Pods */,
@@ -111,6 +116,7 @@
 				D7843B9024BAE40C00E3003E /* ResultViewReactor.swift */,
 				D7590C0824DE52F200F2FCF1 /* PlayerTableViewCell.swift */,
 				D7590C0A24DE665C00F2FCF1 /* extensions.swift */,
+				D7E558FF24E65C8400E4C749 /* Utils.swift */,
 			);
 			path = RandomBBang;
 			sourceTree = "<group>";
@@ -240,7 +246,9 @@
 				D7843B9124BAE40C00E3003E /* ResultViewReactor.swift in Sources */,
 				D756460C24971A0C006C0D41 /* TabBarView.swift in Sources */,
 				D73A7BE924971255006F4DD5 /* SceneDelegate.swift in Sources */,
+				D7E5590224E6738C00E4C749 /* TimerViewController.swift in Sources */,
 				D704EEA424B4B5850036B496 /* PlayerCollectionViewCell.swift in Sources */,
+				D7E5590024E65C8400E4C749 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

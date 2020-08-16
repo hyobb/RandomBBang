@@ -13,4 +13,5 @@ target 'RandomBBang' do
   pod 'SnapKit'
   pod 'Then'
   pod 'UIColor_Hex_Swift'
+  pod 'Motion', '~> 3.1.0'
 end

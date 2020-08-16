@@ -27,9 +27,9 @@ class HomeViewController: UIViewController, View {
     
     private let startButton = UIButton().then {
         $0.setTitle("랜덤빵 시작하기", for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         $0.backgroundColor = UIColor.primaryBlue
-        $0.layer.cornerRadius = 10
-        $0.clipsToBounds = true
+        $0.addCornerRadius(cornerRadius: 10)
         $0.addShadow(opacity: 0.5)
     }
     
@@ -42,8 +42,6 @@ class HomeViewController: UIViewController, View {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.darkGray
-        
-        
     
         view.addSubview(header)
         header.snp.makeConstraints { make in
@@ -95,11 +93,24 @@ class HomeViewController: UIViewController, View {
             .map { Reactor.Action.didChangeCost($0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+
+        newGameContainerView.costTextField.rx.text
+            .orEmpty
+            .distinctUntilChanged()
+            .valueToCurrencyFormatted()
+            .bind(to: newGameContainerView.costTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        newGameContainerView.costTextField.rx.controlEvent([.editingDidEnd])
+            .asObservable()
+            .map { Reactor.Action.costEditingDidEnd }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
         // State
         reactor.state.map { $0.playerCount }
             .distinctUntilChanged()
-            .map { "\($0)" }
+            .map { "\($0) 명" }
             .bind(to: newGameContainerView.playerCountLabel.rx.text)
             .disposed(by: disposeBag)
         
@@ -124,14 +135,26 @@ class HomeViewController: UIViewController, View {
             .bind(to: startButton.rx.isEnabled)
             .disposed(by: disposeBag)
             
-        
+        reactor.state.map { $0.game.cost }
+            .map {
+                if $0 == 0 {
+                    return ""
+                } else {
+                    return Helper.getCurrencyString(from: $0)
+                }
+            }
+            .bind(to: newGameContainerView.costTextField.rx.text)
+            .disposed(by: disposeBag)
         
         
         // View
-        
         startButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
+                
+                let timerVC = TimerViewController()
+                timerVC.modalPresentationStyle = .overFullScreen
+                self.present(timerVC, animated: true)
     
                 let resultViewController = ResultViewController()
                 resultViewController.reactor = ResultViewReactor(game: reactor.currentState.game, playerCount: reactor.currentState.playerCount)
@@ -335,8 +358,9 @@ extension UIView {
         layer.masksToBounds = false
     }
     
-    func addCornerRadius(cornerRadius: CGFloat = 15) {
+    func addCornerRadius(corners: CACornerMask = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner], cornerRadius: CGFloat = 15) {
         layer.cornerRadius = cornerRadius
+        layer.maskedCorners = corners
         clipsToBounds = true
     }
 }

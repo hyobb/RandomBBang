@@ -39,7 +39,7 @@ class ResultViewReactor: Reactor {
                 if i == playerCount - 1 {
                     costs.append(ten * costDividedBy10)
                 } else {
-                    let num = Int.random(in: 0...ten)
+                    let num = Int.random(in: 1...min(ten, 5))
                     ten = ten - num
                     costs.append(num * costDividedBy10)
                 }

@@ -18,7 +18,10 @@ class PlayerTableViewCell: UITableViewCell {
         
         backgroundColor = UIColor.primaryGray
         selectionStyle = .none
-
+        
+        textLabel?.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
     }
     
     required init?(coder: NSCoder) {

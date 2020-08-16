@@ -15,12 +15,14 @@ class HomeViewReactor: Reactor {
         case addPlayer
         case removePlayer
         case didChangeCost(String?)
+        case costEditingDidEnd
     }
 
     enum Mutation {
         case increasePlayerCount
         case decreasePlayerCount
         case setGameCost(Int)
+        case ceilGameCost
     }
 
     struct State {
@@ -44,8 +46,10 @@ class HomeViewReactor: Reactor {
         case .removePlayer:
             return Observable.just(Mutation.decreasePlayerCount)
         case .didChangeCost(let string):
-            guard let costString = string, let cost = Int(costString) else { return .empty() }
+            guard let costString = string, let cost = Helper.getIntValue(from: costString) else { return .empty() }
             return Observable.just(Mutation.setGameCost(cost))
+        case .costEditingDidEnd:
+            return Observable.just(Mutation.ceilGameCost)
         }
     }
 
@@ -77,8 +81,8 @@ class HomeViewReactor: Reactor {
             }
         case .setGameCost(let cost):
             newState.game.cost = cost
-            
-            print(newState.game.cost)
+        case .ceilGameCost:
+            newState.game.cost = Int(ceil(Double(newState.game.cost) / 1000) * 1000)
         }
         
         return newState

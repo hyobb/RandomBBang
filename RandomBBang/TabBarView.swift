@@ -11,13 +11,9 @@ import SnapKit
 import Then
 
 class TabBarView: UITabBarController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .brown
     
-        
         let homeViewController = HomeViewController()
         homeViewController.reactor = HomeViewReactor()
     
@@ -30,5 +26,6 @@ class TabBarView: UITabBarController {
         
         let controllers = [homeNavigationViewController]
         self.viewControllers = controllers
+        self.tabBar.isHidden = true
     }
 }

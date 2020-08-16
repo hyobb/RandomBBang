@@ -1,4 +1,7 @@
 PODS:
+  - Motion (3.1.3):
+    - Motion/Core (= 3.1.3)
+  - Motion/Core (3.1.3)
   - ReactorKit (2.1.0):
     - RxSwift (~> 5.0)
     - WeakMapTable (~> 1.1)
@@ -14,6 +17,7 @@ PODS:
   - WeakMapTable (1.1.0)
 
 DEPENDENCIES:
+  - Motion (~> 3.1.0)
   - ReactorKit
   - RxCocoa
   - SnapKit
@@ -22,6 +26,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Motion
     - ReactorKit
     - RxCocoa
     - RxRelay
@@ -32,6 +37,7 @@ SPEC REPOS:
     - WeakMapTable
 
 SPEC CHECKSUMS:
+  Motion: cf1e060e489f6661126374d5c60dbd2ed991605c
   ReactorKit: 12a93358c554bb3f167b16b14c40374fa9cd5acd
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
@@ -41,6 +47,6 @@ SPEC CHECKSUMS:
   UIColor_Hex_Swift: bc07fc197421ee896b9ed6dcfa2054b7fbf75145
   WeakMapTable: d0327eda092be6a8f7c532942ae98dc7948f5d32
 
-PODFILE CHECKSUM: 84711a0e11bb1249e79519fa05aeb4996564d587
+PODFILE CHECKSUM: ec91fb7457305b3143b29ae6cffc41b12b4196e4
 
 COCOAPODS: 1.8.4

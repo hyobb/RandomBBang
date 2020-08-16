@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-RandomBBang/Pods-RandomBBang-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Motion/Motion.framework
 ${BUILT_PRODUCTS_DIR}/ReactorKit/ReactorKit.framework
 ${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework
 ${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework
