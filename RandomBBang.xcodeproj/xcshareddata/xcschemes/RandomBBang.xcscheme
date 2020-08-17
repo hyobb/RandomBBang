@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D73A7BE224971255006F4DD5"
-               BuildableName = "RandomBBang.app"
+               BuildableName = "&#x1105;&#x1162;&#x11ab;&#x1103;&#x1165;&#x11b7;&#x1108;&#x1161;&#x11bc;.app"
                BlueprintName = "RandomBBang"
                ReferencedContainer = "container:RandomBBang.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D73A7BE224971255006F4DD5"
-            BuildableName = "RandomBBang.app"
+            BuildableName = "&#x1105;&#x1162;&#x11ab;&#x1103;&#x1165;&#x11b7;&#x1108;&#x1161;&#x11bc;.app"
             BlueprintName = "RandomBBang"
             ReferencedContainer = "container:RandomBBang.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D73A7BE224971255006F4DD5"
-            BuildableName = "RandomBBang.app"
+            BuildableName = "&#x1105;&#x1162;&#x11ab;&#x1103;&#x1165;&#x11b7;&#x1108;&#x1161;&#x11bc;.app"
             BlueprintName = "RandomBBang"
             ReferencedContainer = "container:RandomBBang.xcodeproj">
          </BuildableReference>

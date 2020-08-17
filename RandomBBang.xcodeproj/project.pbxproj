@@ -31,7 +31,7 @@
 		0B001D208C0BFE65EF6ADD89 /* Pods_RandomBBang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RandomBBang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AB3D476AB0B7B2C988DA9A7 /* Pods-RandomBBang.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomBBang.debug.xcconfig"; path = "Target Support Files/Pods-RandomBBang/Pods-RandomBBang.debug.xcconfig"; sourceTree = "<group>"; };
 		D704EEA324B4B5850036B496 /* PlayerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCollectionViewCell.swift; sourceTree = "<group>"; };
-		D73A7BE324971255006F4DD5 /* RandomBBang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomBBang.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D73A7BE324971255006F4DD5 /* 랜덤빵.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "랜덤빵.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D73A7BE624971255006F4DD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D73A7BE824971255006F4DD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D73A7BED24971255006F4DD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -84,7 +84,6 @@
 		D73A7BDA24971255006F4DD5 = {
 			isa = PBXGroup;
 			children = (
-				D7E5590124E6738B00E4C749 /* TimerViewController.swift */,
 				D73A7BE524971255006F4DD5 /* RandomBBang */,
 				D73A7BE424971255006F4DD5 /* Products */,
 				AD2254772282C971CDBA25A8 /* Pods */,
@@ -95,7 +94,7 @@
 		D73A7BE424971255006F4DD5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D73A7BE324971255006F4DD5 /* RandomBBang.app */,
+				D73A7BE324971255006F4DD5 /* 랜덤빵.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +102,9 @@
 		D73A7BE524971255006F4DD5 /* RandomBBang */ = {
 			isa = PBXGroup;
 			children = (
+				D7E5590724EA701D00E4C749 /* Reactor */,
+				D7E5590624EA701200E4C749 /* Model */,
+				D7E5590524EA6FF500E4C749 /* View */,
 				D73A7BE624971255006F4DD5 /* AppDelegate.swift */,
 				D73A7BE824971255006F4DD5 /* SceneDelegate.swift */,
 				D73A7BEC24971255006F4DD5 /* Main.storyboard */,
@@ -110,18 +112,40 @@
 				D73A7BF12497125B006F4DD5 /* LaunchScreen.storyboard */,
 				D73A7BF42497125B006F4DD5 /* Info.plist */,
 				D756460B24971A0C006C0D41 /* TabBarView.swift */,
-				D771676324972FF00015C7D9 /* HomeViewController.swift */,
-				D7716765249730410015C7D9 /* HomeViewReactor.swift */,
-				D704EEA324B4B5850036B496 /* PlayerCollectionViewCell.swift */,
-				D75809C824B97B9C0054E494 /* Game.swift */,
-				D7843B8E24BAE3CA00E3003E /* ResultViewController.swift */,
-				D7843B9024BAE40C00E3003E /* ResultViewReactor.swift */,
-				D7590C0824DE52F200F2FCF1 /* PlayerTableViewCell.swift */,
 				D7590C0A24DE665C00F2FCF1 /* extensions.swift */,
 				D7E558FF24E65C8400E4C749 /* Utils.swift */,
-				D7E5590324E8FA6900E4C749 /* GADBannerBaseViewController.swift */,
 			);
 			path = RandomBBang;
+			sourceTree = "<group>";
+		};
+		D7E5590524EA6FF500E4C749 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D7E5590124E6738B00E4C749 /* TimerViewController.swift */,
+				D771676324972FF00015C7D9 /* HomeViewController.swift */,
+				D7843B8E24BAE3CA00E3003E /* ResultViewController.swift */,
+				D704EEA324B4B5850036B496 /* PlayerCollectionViewCell.swift */,
+				D7590C0824DE52F200F2FCF1 /* PlayerTableViewCell.swift */,
+				D7E5590324E8FA6900E4C749 /* GADBannerBaseViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D7E5590624EA701200E4C749 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D75809C824B97B9C0054E494 /* Game.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D7E5590724EA701D00E4C749 /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				D7716765249730410015C7D9 /* HomeViewReactor.swift */,
+				D7843B9024BAE40C00E3003E /* ResultViewReactor.swift */,
+			);
+			path = Reactor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +167,7 @@
 			);
 			name = RandomBBang;
 			productName = RandomBBang;
-			productReference = D73A7BE324971255006F4DD5 /* RandomBBang.app */;
+			productReference = D73A7BE324971255006F4DD5 /* 랜덤빵.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -400,14 +424,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GE989HHXPP;
 				INFOPLIST_FILE = RandomBBang/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = StudioX.RandomBBang;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.StudioX.RandomBBang;
+				PRODUCT_NAME = "랜덤빵";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -419,14 +444,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GE989HHXPP;
 				INFOPLIST_FILE = RandomBBang/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = StudioX.RandomBBang;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.StudioX.RandomBBang;
+				PRODUCT_NAME = "랜덤빵";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
