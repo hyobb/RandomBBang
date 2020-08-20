@@ -125,12 +125,12 @@ class HomeViewController: GADBannerBaseViewController, View{
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
                 
-                let timerVC = TimerViewController()
-                timerVC.modalPresentationStyle = .overFullScreen
-                self.present(timerVC, animated: true)
+                
     
                 let resultViewController = ResultViewController()
                 resultViewController.reactor = ResultViewReactor(game: reactor.currentState.game, playerCount: reactor.currentState.playerCount)
+                
+                self.present(resultViewController.timerVC, animated: true)
                 
                 self.navigationController?.pushViewController(resultViewController, animated: true)
             })

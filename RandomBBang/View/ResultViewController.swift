@@ -11,11 +11,16 @@ import UIKit
 import ReactorKit
 import RxCocoa
 import RxSwift
+import SnapKit
+import Then
 
 import GoogleMobileAds
 
 class ResultViewController: GADBannerBaseViewController, View {
     var disposeBag = DisposeBag()
+    let timerVC = TimerViewController().then {
+        $0.modalPresentationStyle = .overFullScreen
+    }
     
     private let header = UIView()
     
@@ -26,6 +31,25 @@ class ResultViewController: GADBannerBaseViewController, View {
     }
     
     private let resultView = GameResultContainerView()
+    private let bottomButtonStackView = UIStackView().then {
+        $0.axis = .horizontal
+        $0.spacing = 12
+        $0.distribution = .fillEqually
+    }
+    private let replayButton = UIButton().then {
+        $0.setTitle("다시하기", for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        $0.backgroundColor = UIColor.primaryBlue
+        $0.addCornerRadius(cornerRadius: 10)
+        $0.addShadow(opacity: 0.5)
+    }
+    private let shareButton = UIButton().then {
+        $0.setTitle("공유하기", for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        $0.backgroundColor = UIColor.primaryBlue
+        $0.addCornerRadius(cornerRadius: 10)
+        $0.addShadow(opacity: 0.5)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +61,33 @@ class ResultViewController: GADBannerBaseViewController, View {
     
     func bind(reactor: ResultViewReactor) {
         // Action
+        shareButton.rx.tap
+            .subscribe(onNext: {
+                let resultString = reactor.currentState.game.players
+                                    .filter { !$0.isHidden }
+                                    .map { "\($0.name) \t \(Helper.getCurrencyString(from: $0.cost))\n" }
+                                    .reduce("", +)
+                    
+                let text = "💸🤦🏻‍♂️랜덤빵 결과🥳🤩\n" + resultString + Helper.appStoreUrl
+                
+                    
+                let activityVC = UIActivityViewController(activityItems: [ text ], applicationActivities: nil)
+                
+                self.present(activityVC, animated: true)
+                
+            })
+            .disposed(by: disposeBag)
+        
+        replayButton.rx.tap
+            .do(onNext: {
+                self.timerVC.setTimer()
+                self.present(self.timerVC, animated: true)
+
+            })
+            .delay(.seconds(3), scheduler: SerialDispatchQueueScheduler(qos: .background))
+            .map { Reactor.Action.replay }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
         // State
         reactor.state.map { $0.game.cost }
@@ -85,6 +136,16 @@ extension ResultViewController {
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().inset(24)
             make.bottom.equalTo(resultView.playerTableView.snp.bottom).offset(15)
+        }
+        
+        bottomButtonStackView.addArrangedSubview(replayButton)
+        bottomButtonStackView.addArrangedSubview(shareButton)
+        view.addSubview(bottomButtonStackView)
+        bottomButtonStackView.snp.makeConstraints { make in
+            make.top.equalTo(resultView.snp.bottom).offset(12)
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().inset(24)
+            make.height.equalTo(48)
         }
     }
 }
