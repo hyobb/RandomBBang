@@ -30,10 +30,13 @@ extension ObservableType where Element == String {
             let double = (amountWithPrefix as NSString).doubleValue
             number = NSNumber(value: (double / 100))
             
+            let minValue = min(double, Double(1_000_000_000))
+            
             guard number != 0 as NSNumber else {
                 return Observable.just("")
             }
-            return Observable.just(Helper.getCurrencyString(from: Int(double)))
+            
+            return Observable.just(Helper.getCurrencyString(from: Int(minValue)))
         }
   }
 }

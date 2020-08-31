@@ -82,7 +82,6 @@ class HomeViewReactor: Reactor {
         case .setGameCost(let cost):
             newState.game.cost = cost
         case .ceilGameCost:
-            
             newState.game.cost = Int(ceil(Double(newState.game.cost) / Helper.ceilScale) * Helper.ceilScale)
         }
         
