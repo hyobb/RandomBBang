@@ -16,8 +16,6 @@ class HomeViewReactor: Reactor {
         case removePlayer
         case didChangeCost(String?)
         case costEditingDidEnd
-        case increaseTarget
-        case decreaseTarget
     }
 
     enum Mutation {
@@ -25,19 +23,19 @@ class HomeViewReactor: Reactor {
         case decreasePlayerCount
         case setGameCost(Int)
         case ceilGameCost
-        case increaseTargetCount
-        case decreaseTargetCount
     }
 
     struct State {
+        var playerCount: Int
         var game: Game
     }
     
     let initialState: State
     
-    init(playStrategy: PlayStrategy) {
+    init() {
         self.initialState = State(
-            game: Game(playStrategy: playStrategy)
+            playerCount: 4,
+            game: Game()
         )
     }
     
@@ -52,34 +50,30 @@ class HomeViewReactor: Reactor {
             return Observable.just(Mutation.setGameCost(cost))
         case .costEditingDidEnd:
             return Observable.just(Mutation.ceilGameCost)
-        case .increaseTarget:
-            return Observable.just(Mutation.increaseTargetCount)
-        case .decreaseTarget:
-            return Observable.just(Mutation.decreaseTargetCount)
         }
     }
 
     func reduce(state: HomeViewReactor.State, mutation: HomeViewReactor.Mutation) -> HomeViewReactor.State {
-        let newState = state
+        var newState = state
         
         switch mutation {
         case .increasePlayerCount:
-            guard newState.game.playerCount < newState.game.players.count else { return newState }
+            guard newState.playerCount < 8 else { return newState }
             
-            newState.game.playerCount += 1
+            newState.playerCount += 1
             for (index, player) in newState.game.players.enumerated() {
-                if index < newState.game.playerCount {
+                if index < newState.playerCount {
                     player.isHidden = false
                 } else {
                     player.isHidden = true
                 }
             }
         case .decreasePlayerCount:
-            guard newState.game.playerCount > 2 else { return newState }
+            guard newState.playerCount > 2 else { return newState }
             
-            newState.game.playerCount -= 1
+            newState.playerCount -= 1
             for (index, player) in newState.game.players.enumerated() {
-                if index < newState.game.playerCount {
+                if index < newState.playerCount {
                     player.isHidden = false
                 } else {
                     player.isHidden = true
@@ -89,12 +83,6 @@ class HomeViewReactor: Reactor {
             newState.game.cost = cost
         case .ceilGameCost:
             newState.game.cost = Int(ceil(Double(newState.game.cost) / Helper.ceilScale) * Helper.ceilScale)
-        case .increaseTargetCount:
-            guard newState.game.targetCount < newState.game.playerCount else { return newState }
-            newState.game.targetCount += 1
-        case .decreaseTargetCount:
-            guard newState.game.targetCount > 2 else { return newState }
-            newState.game.targetCount -= 1
         }
         
         return newState

@@ -48,7 +48,6 @@ PODS:
   - Then (2.6.0)
   - UIColor_Hex_Swift (4.2.0)
   - WeakMapTable (1.1.0)
-  - XLPagerTabStrip (9.0.0)
 
 DEPENDENCIES:
   - Google-Mobile-Ads-SDK
@@ -58,7 +57,6 @@ DEPENDENCIES:
   - SnapKit
   - Then
   - UIColor_Hex_Swift
-  - XLPagerTabStrip
 
 SPEC REPOS:
   trunk:
@@ -77,7 +75,6 @@ SPEC REPOS:
     - Then
     - UIColor_Hex_Swift
     - WeakMapTable
-    - XLPagerTabStrip
 
 SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: aec52559ce73ddf1e6478d1904dd71a741f1bc61
@@ -95,8 +92,7 @@ SPEC CHECKSUMS:
   Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
   UIColor_Hex_Swift: bc07fc197421ee896b9ed6dcfa2054b7fbf75145
   WeakMapTable: d0327eda092be6a8f7c532942ae98dc7948f5d32
-  XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: f687a805ec379010a8dc7469769e27fb1cc05621
+PODFILE CHECKSUM: 668ed2029799b77f41662a3aad0732d0d8942ad6
 
 COCOAPODS: 1.8.4
