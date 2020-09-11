@@ -30,7 +30,10 @@ class TimerViewController: GADBannerBaseViewController {
         counterLabel.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
         }
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setTimer()
     }
     

@@ -13,16 +13,14 @@ import Then
 class TabBarView: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        let homeViewController = HomeViewController()
-        homeViewController.reactor = HomeViewReactor()
-    
-        let homeNavigationViewController = UINavigationController(rootViewController: homeViewController)
-        homeNavigationViewController.setNavigationBarHidden(true, animated: true)
+        
+        let homePagerVC = HomePagerViewController()
+        let homePagerContainerVC = PagerContainerViewController(pagerVC: homePagerVC)
+        let homeNavigationViewController = UINavigationController(rootViewController: homePagerContainerVC)
+        homeNavigationViewController.setNavigationBarHidden(true, animated: false)
         
         let homeTabIcon = UITabBarItem(title: "홈", image: UIImage(named: "home_icon"), selectedImage: nil)
-        homeViewController.tabBarItem = homeTabIcon
-        
+        homePagerContainerVC.tabBarItem = homeTabIcon
         
         let controllers = [homeNavigationViewController]
         self.viewControllers = controllers

@@ -16,7 +16,7 @@ import Then
 
 import GoogleMobileAds
 
-class ResultViewController: GADBannerBaseViewController, View {
+class ResultViewController: GADBannerBaseViewController, View, UIGestureRecognizerDelegate {
     var disposeBag = DisposeBag()
     let timerVC = TimerViewController().then {
         $0.modalPresentationStyle = .overFullScreen
@@ -30,7 +30,7 @@ class ResultViewController: GADBannerBaseViewController, View {
         $0.font = UIFont.systemFont(ofSize: 34.0, weight: .bold)
     }
     
-    private let resultView = GameResultContainerView()
+    private let resultView = GameResultView()
     private let bottomButtonStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 12
@@ -55,6 +55,7 @@ class ResultViewController: GADBannerBaseViewController, View {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.darkGray
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         makeConstraints()
     }
@@ -82,7 +83,6 @@ class ResultViewController: GADBannerBaseViewController, View {
             .do(onNext: {
                 self.timerVC.setTimer()
                 self.present(self.timerVC, animated: true)
-
             })
             .delay(.seconds(3), scheduler: SerialDispatchQueueScheduler(qos: .background))
             .map { Reactor.Action.replay }
@@ -90,8 +90,7 @@ class ResultViewController: GADBannerBaseViewController, View {
             .disposed(by: disposeBag)
         
         // State
-        reactor.state.map { $0.game.cost }
-            .map { "💸\t\t\(Helper.getCurrencyString(from: $0))" }
+        reactor.state.map { $0.game.getResultTitle() }
             .bind(to: resultView.costLabel.rx.text)
             .disposed(by: disposeBag)
         
@@ -103,12 +102,18 @@ class ResultViewController: GADBannerBaseViewController, View {
         
         reactor.state.map { $0.game.players.filter { !$0.isHidden } }
             .bind(to: resultView.playerTableView.rx.items(cellIdentifier: PlayerTableViewCell.reuseIdentifier, cellType: PlayerTableViewCell.self)) { indexPath, player, cell in
-                var title: String
-                if player.cost == 0 {
-                    title = "\(player.name)\t\t통과\tㅎㅎ!"
+                var title: String = player.name
+                
+                if let _ = reactor.currentState.game.playStrategy as? ClassicStrategy {
+                    if player.cost == 0 {
+                        title += "\t\t통과\tㅎㅎ!"
+                    } else {
+                        title += "\t\t\(Helper.getCurrencyString(from: player.cost))\tㅋㅋ!"
+                    }
                 } else {
-                    title = "\(player.name)\t\t\(Helper.getCurrencyString(from: player.cost))\tㅋㅋ!"
+                    title += player.isSelected ? "\t\t🎯 ㅋㅋ!" : "\t\t통과\tㅎㅎ!"
                 }
+                
                 cell.setup(title: title)
         }
         .disposed(by: disposeBag)
@@ -119,7 +124,7 @@ extension ResultViewController {
     private func makeConstraints() {
         view.addSubview(header)
         header.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.centerX.width.equalToSuperview()
             make.height.equalTo(44.0)
         }
@@ -147,88 +152,13 @@ extension ResultViewController {
             make.width.equalToSuperview().inset(24)
             make.height.equalTo(48)
         }
-    }
-}
-
-class GameResultContainerView: UIView {
-    private let headerStackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.distribution = .fillEqually
-        $0.alignment = .center
-        $0.addBackground(color: UIColor.orange)
-    }
-    private let costContainerview = UIView()
-    let costLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-    }
-    
-    private let playerContainerView = UIView()
-    let playerCountLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-    }
-    
-    let playerTableView = UITableView().then {
-        $0.register(PlayerTableViewCell.self, forCellReuseIdentifier: PlayerTableViewCell.reuseIdentifier)
-        $0.backgroundColor = UIColor.primaryGray
-        $0.separatorStyle = .none
-        $0.flashScrollIndicators()
-    }
-    
-    init() {
-        super.init(frame: .zero)
         
-        self.backgroundColor = UIColor.primaryGray
-        self.addCornerRadius()
-        self.addShadow()
-        
-        addSubview(headerStackView)
-        headerStackView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
-            make.height.equalTo(80)
+        if let reactor = reactor, reactor.currentState.game.playerCount > 8 {
+            resultView.playerTableView.snp.remakeConstraints { make in
+                make.height.equalTo(44 * 6 + 25)
+                make.width.centerX.equalToSuperview()
+                make.top.equalTo(resultView.headerStackView.snp.bottom).offset(15)
+            }
         }
-        
-        headerStackView.addArrangedSubview(costContainerview)
-        headerStackView.addArrangedSubview(playerContainerView)
-        
-        costContainerview.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-        }
-        
-        costContainerview.addSubview(costLabel)
-        costLabel.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-            make.width.greaterThanOrEqualTo(150)
-        }
-        
-        playerContainerView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-        }
-        
-        playerContainerView.addSubview(playerCountLabel)
-        playerCountLabel.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-            make.width.greaterThanOrEqualTo(150)
-        }
-        
-        addSubview(playerTableView)
-        playerTableView.snp.makeConstraints { make in
-            make.width.centerX.equalToSuperview()
-            make.top.equalTo(headerStackView.snp.bottom).offset(15)
-            make.height.equalTo(44 * 4 + 25)
-        }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension UIStackView {
-    func addBackground(color: UIColor) {
-        let subView = UIView(frame: bounds)
-        subView.addCornerRadius(corners: [.layerMaxXMinYCorner, .layerMinXMinYCorner], cornerRadius: 15)
-        subView.backgroundColor = color
-        subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        insertSubview(subView, at: 0)
     }
 }
