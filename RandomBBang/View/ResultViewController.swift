@@ -155,7 +155,7 @@ extension ResultViewController {
         
         if let reactor = reactor, reactor.currentState.game.playerCount > 8 {
             resultView.playerTableView.snp.remakeConstraints { make in
-                make.height.equalTo(44 * 6 + 25)
+                make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-138)
                 make.width.centerX.equalToSuperview()
                 make.top.equalTo(resultView.headerStackView.snp.bottom).offset(15)
             }
