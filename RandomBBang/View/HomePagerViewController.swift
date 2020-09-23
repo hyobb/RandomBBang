@@ -42,8 +42,10 @@ class HomePagerViewController: ButtonBarPagerTabStripViewController {
         
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.green
+        self.navigationController?.navigationBar.barTintColor = UIColor.darkGray
+        self.navigationItem.title = "123123"
         
         self.delegate = self
     }
