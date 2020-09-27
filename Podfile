@@ -8,6 +8,9 @@ def pods
   # Pods for RandomBBang
   pod 'ReactorKit'
   pod 'RxCocoa'
+  
+  # Database
+  pod 'RealmSwift'
 
   # UI
   pod 'SnapKit'

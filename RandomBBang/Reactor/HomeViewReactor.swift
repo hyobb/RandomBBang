@@ -9,6 +9,7 @@
 import ReactorKit
 import RxCocoa
 import RxSwift
+import RealmSwift
 
 class HomeViewReactor: Reactor {
     enum Action {
@@ -30,14 +31,14 @@ class HomeViewReactor: Reactor {
     }
 
     struct State {
-        var game: Game
+        var gameVM: GameViewModel
     }
     
     let initialState: State
     
     init(playStrategy: PlayStrategy) {
         self.initialState = State(
-            game: Game(playStrategy: playStrategy)
+            gameVM: GameViewModel(playStrategy: playStrategy)
         )
     }
     
@@ -64,37 +65,38 @@ class HomeViewReactor: Reactor {
         
         switch mutation {
         case .increasePlayerCount:
-            guard newState.game.playerCount < newState.game.players.count else { return newState }
+            guard newState.gameVM.playerCount < newState.gameVM.players.count else { return newState }
             
-            newState.game.playerCount += 1
-            for (index, player) in newState.game.players.enumerated() {
-                if index < newState.game.playerCount {
+            newState.gameVM.playerCount += 1
+            for (index, player) in newState.gameVM.players.enumerated() {
+                if index < newState.gameVM.playerCount {
                     player.isHidden = false
                 } else {
                     player.isHidden = true
                 }
             }
         case .decreasePlayerCount:
-            guard newState.game.playerCount > 2 else { return newState }
+            guard newState.gameVM.playerCount > 2 else { return newState }
             
-            newState.game.playerCount -= 1
-            for (index, player) in newState.game.players.enumerated() {
-                if index < newState.game.playerCount {
+            newState.gameVM.playerCount -= 1
+            for (index, player) in newState.gameVM.players.enumerated() {
+                if index < newState.gameVM.playerCount {
                     player.isHidden = false
                 } else {
                     player.isHidden = true
                 }
             }
         case .setGameCost(let cost):
-            newState.game.cost = cost
+            newState.gameVM.cost = cost
         case .ceilGameCost:
-            newState.game.cost = Int(ceil(Double(newState.game.cost) / Helper.ceilScale) * Helper.ceilScale)
+            newState.gameVM.cost = Int(ceil(Double(newState.gameVM.cost) / Helper.ceilScale) * Helper.ceilScale)
         case .increaseTargetCount:
-            guard newState.game.targetCount < newState.game.playerCount else { return newState }
-            newState.game.targetCount += 1
+            guard newState.gameVM.targetCount < newState.gameVM.playerCount else { return newState }
+            newState.gameVM.targetCount += 1
+
         case .decreaseTargetCount:
-            guard newState.game.targetCount > 2 else { return newState }
-            newState.game.targetCount -= 1
+            guard newState.gameVM.targetCount > 2 else { return newState }
+            newState.gameVM.targetCount -= 1
         }
         
         return newState

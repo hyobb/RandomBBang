@@ -23,18 +23,18 @@ class RandomBBangTests: XCTestCase {
         // given
         let playerCount = 5
         let cost = 100_000
-        let game = Game(playStrategy: ClassicStrategy())
-        game.playerCount = playerCount
-        game.cost = cost
+        let gameVM = GameViewModel(playStrategy: ClassicStrategy())
+        gameVM.playerCount = playerCount
+        gameVM.cost = cost
         
         // when
-        game.play()
+        gameVM.play()
         
         // then
-        XCTAssertLessThan(game.players.filter({ (p: Player) -> Bool in
+        XCTAssertLessThan(gameVM.players.filter({ (p: Player) -> Bool in
             return !p.isHidden
             }).count, playerCount)
-        XCTAssertEqual(cost, game.players.reduce(0, { (sum: Int, p: Player) -> Int in
+        XCTAssertEqual(cost, gameVM.players.reduce(0, { (sum: Int, p: Player) -> Int in
             return sum + p.cost
         }))
     }

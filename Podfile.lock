@@ -38,6 +38,11 @@ PODS:
   - ReactorKit (2.1.0):
     - RxSwift (~> 5.0)
     - WeakMapTable (~> 1.1)
+  - Realm (3.20.0):
+    - Realm/Headers (= 3.20.0)
+  - Realm/Headers (3.20.0)
+  - RealmSwift (3.20.0):
+    - Realm (= 3.20.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -54,6 +59,7 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK
   - Motion (~> 3.1.0)
   - ReactorKit
+  - RealmSwift
   - RxCocoa
   - SnapKit
   - Then
@@ -70,6 +76,8 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - ReactorKit
+    - Realm
+    - RealmSwift
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -88,6 +96,8 @@ SPEC CHECKSUMS:
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   ReactorKit: 12a93358c554bb3f167b16b14c40374fa9cd5acd
+  Realm: 8b2ca5bc6479a91f379b6b42b5922e396cd5ba5a
+  RealmSwift: 1949ef26a279e1845bd51d591b9103adfcd121df
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
@@ -97,6 +107,6 @@ SPEC CHECKSUMS:
   WeakMapTable: d0327eda092be6a8f7c532942ae98dc7948f5d32
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: f687a805ec379010a8dc7469769e27fb1cc05621
+PODFILE CHECKSUM: 4d7853d2ce6bfab35ee995f9be4466ab82e2c0c5
 
 COCOAPODS: 1.8.4

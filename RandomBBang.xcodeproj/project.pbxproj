@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		62C587C0D592FEC77BDB35CC /* Pods_RandomBBang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B001D208C0BFE65EF6ADD89 /* Pods_RandomBBang.framework */; };
 		D704EEA424B4B5850036B496 /* PlayerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D704EEA324B4B5850036B496 /* PlayerCollectionViewCell.swift */; };
+		D713A4142520CCAD004F911C /* StorableGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D713A4132520CCAD004F911C /* StorableGame.swift */; };
+		D713A4182520CD5A004F911C /* AnyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D713A4172520CD5A004F911C /* AnyRepository.swift */; };
+		D713A41E2520CD91004F911C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D713A41D2520CD91004F911C /* Player.swift */; };
 		D72E5D622507B8AA002E2403 /* HomePagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72E5D612507B8AA002E2403 /* HomePagerViewController.swift */; };
 		D73A7BE724971255006F4DD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73A7BE624971255006F4DD5 /* AppDelegate.swift */; };
 		D73A7BE924971255006F4DD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73A7BE824971255006F4DD5 /* SceneDelegate.swift */; };
@@ -32,6 +35,7 @@
 		D7E5590024E65C8400E4C749 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E558FF24E65C8400E4C749 /* Utils.swift */; };
 		D7E5590224E6738C00E4C749 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E5590124E6738B00E4C749 /* TimerViewController.swift */; };
 		D7E5590424E8FA6A00E4C749 /* GADBannerBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E5590324E8FA6900E4C749 /* GADBannerBaseViewController.swift */; };
+		D7F46630251EEABA00135EAC /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F4662F251EEABA00135EAC /* Repository.swift */; };
 		DC31EBD541F8744A8389FE5F /* Pods_RandomBBangTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C59CBF3D7A6E34FED5EDCF5 /* Pods_RandomBBangTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +56,9 @@
 		5A3662FDE63391C22864EFD1 /* Pods-RandomBBangTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomBBangTests.release.xcconfig"; path = "Target Support Files/Pods-RandomBBangTests/Pods-RandomBBangTests.release.xcconfig"; sourceTree = "<group>"; };
 		BF969F92A052B2E5C9A21293 /* Pods-RandomBBangTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomBBangTests.debug.xcconfig"; path = "Target Support Files/Pods-RandomBBangTests/Pods-RandomBBangTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D704EEA324B4B5850036B496 /* PlayerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCollectionViewCell.swift; sourceTree = "<group>"; };
+		D713A4132520CCAD004F911C /* StorableGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorableGame.swift; sourceTree = "<group>"; };
+		D713A4172520CD5A004F911C /* AnyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyRepository.swift; sourceTree = "<group>"; };
+		D713A41D2520CD91004F911C /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		D72E5D612507B8AA002E2403 /* HomePagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePagerViewController.swift; sourceTree = "<group>"; };
 		D73A7BE324971255006F4DD5 /* 랜덤빵.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "랜덤빵.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D73A7BE624971255006F4DD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +86,7 @@
 		D7E558FF24E65C8400E4C749 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D7E5590124E6738B00E4C749 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		D7E5590324E8FA6900E4C749 /* GADBannerBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADBannerBaseViewController.swift; sourceTree = "<group>"; };
+		D7F4662F251EEABA00135EAC /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		E97536905AC795362AEF9B33 /* Pods-RandomBBang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomBBang.release.xcconfig"; path = "Target Support Files/Pods-RandomBBang/Pods-RandomBBang.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,8 +153,8 @@
 		D73A7BE524971255006F4DD5 /* RandomBBang */ = {
 			isa = PBXGroup;
 			children = (
+				D7F4662D251EEA6800135EAC /* Common */,
 				D7E5590724EA701D00E4C749 /* Reactor */,
-				D7E5590624EA701200E4C749 /* Model */,
 				D7E5590524EA6FF500E4C749 /* View */,
 				D73A7BE624971255006F4DD5 /* AppDelegate.swift */,
 				D73A7BE824971255006F4DD5 /* SceneDelegate.swift */,
@@ -201,6 +209,7 @@
 			children = (
 				D75809C824B97B9C0054E494 /* Game.swift */,
 				D74781B62509FE76004472C3 /* PlayStrategy.swift */,
+				D713A41D2520CD91004F911C /* Player.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -212,6 +221,25 @@
 				D7843B9024BAE40C00E3003E /* ResultViewReactor.swift */,
 			);
 			path = Reactor;
+			sourceTree = "<group>";
+		};
+		D7F4662D251EEA6800135EAC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D7F4662E251EEA9400135EAC /* Persistence */,
+				D7E5590624EA701200E4C749 /* Model */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D7F4662E251EEA9400135EAC /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				D7F4662F251EEABA00135EAC /* Repository.swift */,
+				D713A4172520CD5A004F911C /* AnyRepository.swift */,
+				D713A4132520CCAD004F911C /* StorableGame.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,8 +432,10 @@
 				D7716766249730410015C7D9 /* HomeViewReactor.swift in Sources */,
 				D7590C0924DE52F200F2FCF1 /* PlayerTableViewCell.swift in Sources */,
 				D7590C0B24DE665C00F2FCF1 /* extensions.swift in Sources */,
+				D713A41E2520CD91004F911C /* Player.swift in Sources */,
 				D75809C924B97B9C0054E494 /* Game.swift in Sources */,
 				D74781B52509B288004472C3 /* NewGameView.swift in Sources */,
+				D713A4182520CD5A004F911C /* AnyRepository.swift in Sources */,
 				D7843B8F24BAE3CA00E3003E /* ResultViewController.swift in Sources */,
 				D74781B1250912BB004472C3 /* PagerContainerViewController.swift in Sources */,
 				D771676424972FF00015C7D9 /* ClassicGameViewController.swift in Sources */,
@@ -414,8 +444,10 @@
 				D74781B325091786004472C3 /* LadderGameViewController.swift in Sources */,
 				D756460C24971A0C006C0D41 /* TabBarView.swift in Sources */,
 				D73A7BE924971255006F4DD5 /* SceneDelegate.swift in Sources */,
+				D7F46630251EEABA00135EAC /* Repository.swift in Sources */,
 				D7E5590224E6738C00E4C749 /* TimerViewController.swift in Sources */,
 				D704EEA424B4B5850036B496 /* PlayerCollectionViewCell.swift in Sources */,
+				D713A4142520CCAD004F911C /* StorableGame.swift in Sources */,
 				D72E5D622507B8AA002E2403 /* HomePagerViewController.swift in Sources */,
 				D7E5590024E65C8400E4C749 /* Utils.swift in Sources */,
 				D74781B72509FE76004472C3 /* PlayStrategy.swift in Sources */,
