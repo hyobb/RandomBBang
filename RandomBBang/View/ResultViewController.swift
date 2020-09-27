@@ -13,6 +13,7 @@ import RxCocoa
 import RxSwift
 import SnapKit
 import Then
+import RealmSwift
 
 import GoogleMobileAds
 
@@ -53,7 +54,8 @@ class ResultViewController: GADBannerBaseViewController, View, UIGestureRecogniz
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+
         view.backgroundColor = UIColor.darkGray
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
@@ -64,7 +66,7 @@ class ResultViewController: GADBannerBaseViewController, View, UIGestureRecogniz
         // Action
         shareButton.rx.tap
             .subscribe(onNext: {
-                let resultString = reactor.currentState.game.players
+                let resultString = reactor.currentState.gameVM.players
                                     .filter { !$0.isHidden }
                                     .map { "\($0.name) \t \(Helper.getCurrencyString(from: $0.cost))\n" }
                                     .reduce("", +)
@@ -84,27 +86,27 @@ class ResultViewController: GADBannerBaseViewController, View, UIGestureRecogniz
                 self.timerVC.setTimer()
                 self.present(self.timerVC, animated: true)
             })
-            .delay(.seconds(3), scheduler: SerialDispatchQueueScheduler(qos: .background))
+            .delay(.seconds(3), scheduler: MainScheduler.instance)
             .map { Reactor.Action.replay }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         // State
-        reactor.state.map { $0.game.getResultTitle() }
+        reactor.state.map { $0.gameVM.getResultTitle() }
             .bind(to: resultView.costLabel.rx.text)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.players.filter { !$0.isHidden }.count }
+        reactor.state.map { $0.gameVM.players.filter { !$0.isHidden }.count }
             .map { "🤦🏻‍♂️\t\t\($0) 명" }
             .bind(to: resultView.playerCountLabel.rx.text)
             .disposed(by: disposeBag)
             
         
-        reactor.state.map { $0.game.players.filter { !$0.isHidden } }
+        reactor.state.map { $0.gameVM.players.filter { !$0.isHidden } }
             .bind(to: resultView.playerTableView.rx.items(cellIdentifier: PlayerTableViewCell.reuseIdentifier, cellType: PlayerTableViewCell.self)) { indexPath, player, cell in
                 var title: String = player.name
                 
-                if let _ = reactor.currentState.game.playStrategy as? ClassicStrategy {
+                if let _ = reactor.currentState.gameVM.playStrategy as? ClassicStrategy {
                     if player.cost == 0 {
                         title += "\t\t통과\tㅎㅎ!"
                     } else {
@@ -115,8 +117,8 @@ class ResultViewController: GADBannerBaseViewController, View, UIGestureRecogniz
                 }
                 
                 cell.setup(title: title)
-        }
-        .disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -153,7 +155,7 @@ extension ResultViewController {
             make.height.equalTo(48)
         }
         
-        if let reactor = reactor, reactor.currentState.game.playerCount > 8 {
+        if let reactor = reactor, reactor.currentState.gameVM.playerCount > 8 {
             resultView.playerTableView.snp.remakeConstraints { make in
                 make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-138)
                 make.width.centerX.equalToSuperview()

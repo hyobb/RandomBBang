@@ -62,41 +62,41 @@ class LadderGameViewController: GADBannerBaseViewController, View{
             
         
         // State
-        reactor.state.map { $0.game.playerCount }
+        reactor.state.map { $0.gameVM.playerCount }
             .distinctUntilChanged()
             .map { "\($0) 명" }
             .bind(to: newGameView.playerCountLabel.rx.text)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.players.filter { !$0.isHidden } }
+        reactor.state.map { $0.gameVM.players.filter { !$0.isHidden } }
             .bind(to: newGameView.playerCollectionView.rx.items(cellIdentifier: PlayerCollectionViewCell.reuseIdentifier, cellType: PlayerCollectionViewCell.self)) { indexPath, player, cell in
                 cell.setup(title: player.name)
             }
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.playerCount < $0.game.players.count }
+        reactor.state.map { $0.gameVM.playerCount < $0.gameVM.players.count }
             .bind(to: newGameView.increaseButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.playerCount > 2 }
+        reactor.state.map { $0.gameVM.playerCount > 2 }
             .bind(to: newGameView.decreaseButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.targetCount < $0.game.playerCount }
+        reactor.state.map { $0.gameVM.targetCount < $0.gameVM.playerCount }
             .bind(to: startButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.targetCount }
+        reactor.state.map { $0.gameVM.targetCount }
             .distinctUntilChanged()
             .map { "\($0) 명" }
             .bind(to: newGameView.targetCountLabel.rx.text)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.targetCount + 1 < $0.game.playerCount }
+        reactor.state.map { $0.gameVM.targetCount + 1 < $0.gameVM.playerCount }
             .bind(to: newGameView.increaseTargetButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.targetCount > 1 }
+        reactor.state.map { $0.gameVM.targetCount > 1 }
             .bind(to: newGameView.decreaseTargetButton.rx.isEnabled)
             .disposed(by: disposeBag)
             
@@ -104,10 +104,10 @@ class LadderGameViewController: GADBannerBaseViewController, View{
         startButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
-                let game = reactor.currentState.game
-                game.play()
+                let gameVM = reactor.currentState.gameVM
+                gameVM.play()
                 
-                self.resultViewController.reactor = ResultViewReactor(game: game)
+                self.resultViewController.reactor = ResultViewReactor(gameVM: gameVM)
                 
                 self.present(self.resultViewController.timerVC, animated: true)
                 self.navigationController?.pushViewController(self.resultViewController, animated: true)

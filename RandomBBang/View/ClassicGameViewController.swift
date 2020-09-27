@@ -70,31 +70,31 @@ class ClassicGameViewController: GADBannerBaseViewController, View{
             .disposed(by: disposeBag)
         
         // State
-        reactor.state.map { $0.game.playerCount }
+        reactor.state.map { $0.gameVM.playerCount }
             .distinctUntilChanged()
             .map { "\($0) 명" }
             .bind(to: newGameView.playerCountLabel.rx.text)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.players.filter { !$0.isHidden } }
+        reactor.state.map { $0.gameVM.players.filter { !$0.isHidden } }
             .bind(to: newGameView.playerCollectionView.rx.items(cellIdentifier: PlayerCollectionViewCell.reuseIdentifier, cellType: PlayerCollectionViewCell.self)) { indexPath, player, cell in
                 cell.setup(title: player.name)
             }
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.playerCount < $0.game.players.count }
+        reactor.state.map { $0.gameVM.playerCount < $0.gameVM.players.count }
             .bind(to: newGameView.increaseButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.playerCount > 2 }
+        reactor.state.map { $0.gameVM.playerCount > 2 }
             .bind(to: newGameView.decreaseButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.game.cost > 0}
+        reactor.state.map { $0.gameVM.cost > 0}
             .bind(to: startButton.rx.isEnabled)
             .disposed(by: disposeBag)
             
-        reactor.state.map { $0.game.cost }
+        reactor.state.map { $0.gameVM.cost }
             .map {
                 if $0 == 0 {
                     return ""
@@ -109,10 +109,10 @@ class ClassicGameViewController: GADBannerBaseViewController, View{
         startButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
-                let game = reactor.currentState.game
-                game.play()
+                let gameVM = reactor.currentState.gameVM
+                gameVM.play()
                 
-                self.resultViewController.reactor = ResultViewReactor(game: game)
+                self.resultViewController.reactor = ResultViewReactor(gameVM: gameVM)
                 
                 self.present(self.resultViewController.timerVC, animated: true)
                 self.navigationController?.pushViewController(self.resultViewController, animated: true)

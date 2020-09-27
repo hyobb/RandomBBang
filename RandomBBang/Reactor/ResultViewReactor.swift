@@ -10,6 +10,8 @@ import ReactorKit
 import RxCocoa
 import RxSwift
 
+import RealmSwift
+
 class ResultViewReactor: Reactor {
     enum Action {
         case replay
@@ -20,13 +22,19 @@ class ResultViewReactor: Reactor {
     }
     
     struct State {
-        var game: Game
+        var gameVM: GameViewModel
+        let gameRepository: AnyRepository<Game>
     }
     
     let initialState: State
     
-    init(game: Game = Game()) {
-        self.initialState = State(game: game)
+    init(gameVM: GameViewModel = GameViewModel()) {
+        self.initialState = State(
+            gameVM: gameVM,
+            gameRepository: AnyRepository<Game>()
+        )
+        
+        try? currentState.gameRepository.insert(item: currentState.gameVM.toGame())
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -41,7 +49,8 @@ class ResultViewReactor: Reactor {
         
         switch mutation {
         case .replayGame:
-            newState.game.play()
+            newState.gameVM.play()
+            try? newState.gameRepository.insert(item: newState.gameVM.toGame())
         }
         
         return newState
