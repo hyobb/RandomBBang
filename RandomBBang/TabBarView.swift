@@ -17,13 +17,18 @@ class TabBarView: UITabBarController {
         let homePagerVC = HomePagerViewController()
         let homePagerContainerVC = PagerContainerViewController(pagerVC: homePagerVC)
         let homeNavigationViewController = UINavigationController(rootViewController: homePagerContainerVC)
+        
+        let gameListView = GameListViewHostingController(rootView: GameListView())
+        let listTabIcon = UITabBarItem(tabBarSystemItem: .history, tag: 1)
+        
+        gameListView.tabBarItem = listTabIcon
 //        homeNavigationViewController.setNavigationBarHidden(true, animated: false)
         
         let homeTabIcon = UITabBarItem(title: "홈", image: UIImage(named: "home_icon"), selectedImage: nil)
         homePagerContainerVC.tabBarItem = homeTabIcon
         
-        let controllers = [homeNavigationViewController]
+        let controllers = [homeNavigationViewController, gameListView]
         self.viewControllers = controllers
-        self.tabBar.isHidden = true
+//        self.tabBar.isHidden = true
     }
 }

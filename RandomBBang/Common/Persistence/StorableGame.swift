@@ -12,7 +12,7 @@ import RealmSwift
 extension Game: Entity {
     private var storableGame: StorableGame {
         let realmGame = StorableGame()
-        realmGame.uuid = uuid
+        realmGame.uuid = id
         realmGame.cost = cost
         realmGame.targetCount = targetCount
         realmGame.type = type.rawValue
@@ -50,7 +50,7 @@ class StorableGame: Object, Storable {
             let playerList = try! decoder.decode(PlayerList.self, from: players.data(using: .utf8)!)
             
             return Game(
-                uuid: uuid,
+                id: uuid,
                 cost: cost,
                 targetCount: targetCount,
                 players: playerList,

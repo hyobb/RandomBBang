@@ -27,7 +27,7 @@ class AnyRepository<RepositoryObject>: Repository
         if let predicate = predicate {
             objects = objects.filter(predicate)
         }
-        return objects.compactMap{ ($0).model as? RepositoryObject }
+        return objects.compactMap { ($0).model as? RepositoryObject }
     }
 
     func insert(item: RepositoryObject) throws {
