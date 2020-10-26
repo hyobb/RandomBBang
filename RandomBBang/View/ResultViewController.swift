@@ -76,8 +76,10 @@ class ResultViewController: GADBannerBaseViewController, View, UIGestureRecogniz
                     
                 let activityVC = UIActivityViewController(activityItems: [ text ], applicationActivities: nil)
                 
+                if UIDevice.current.userInterfaceIdiom == .pad, let popOver = activityVC.popoverPresentationController {
+                    popOver.sourceView = self.shareButton
+                }
                 self.present(activityVC, animated: true)
-                
             })
             .disposed(by: disposeBag)
         
