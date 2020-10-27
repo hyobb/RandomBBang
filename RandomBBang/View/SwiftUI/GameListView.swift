@@ -28,25 +28,26 @@ struct GameRow: View {
     }
     
     var body: some View {
-//        Text("\(gameListCellVM.date) \(gameListCellVM.type) \(gameListCellVM.playerCount) \(gameListCellVM.resultMessage)")
-
-        HStack {
-            VStack {
-                
-                Text(gameListCellVM.type)
-                    .font(.body)
-                    .fontWeight(.bold)
-                
-                Text(gameListCellVM.date)
-                    .font(.caption)
-            }
-                
-            
-            VStack(alignment: .leading, spacing: 10) {
-                Text(gameListCellVM.playerCount)
-                    .font(.subheadline)
-                Text(gameListCellVM.resultMessage)
-                    .font(.subheadline)
+        NavigationLink(destination: ResultView(game: gameListCellVM.game).edgesIgnoringSafeArea(.all)) {
+            ZStack {
+                HStack {
+                    VStack {
+                        Text(gameListCellVM.type)
+                            .font(.body)
+                            .fontWeight(.bold)
+                        
+                        Text(gameListCellVM.date)
+                            .font(.caption)
+                    }
+                    
+                    
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(gameListCellVM.playerCount)
+                            .font(.subheadline)
+                        Text(gameListCellVM.resultMessage)
+                            .font(.subheadline)
+                    }
+                }
             }
         }
         .listRowBackground(Color(UIColor.darkGray))
@@ -60,7 +61,6 @@ struct GameListView: View {
     
     init() {
         UITableView.appearance().backgroundColor = UIColor.darkGray
-
     }
     
     var body: some View {
@@ -76,9 +76,30 @@ struct GameListView: View {
             .navigationBarTitle("기록")
         }
         .onAppear {
-            print("sdfsdfsdf")
             UITableView.appearance().separatorStyle = .none
             games = gameRepo.getAll()
         }
+    }
+}
+
+struct ResultView: UIViewControllerRepresentable {
+    typealias UIViewControllerType = ResultViewController
+    var gameVM: GameViewModel
+    
+    init(game: Game) {
+        gameVM = game.toGameViewModel()
+        UINavigationBar.appearance().backgroundColor = UIColor.darkGray
+    }
+
+    func makeUIViewController(context: Context) -> ResultViewController {
+        let resultVC = ResultViewController()
+        resultVC.navigationController?.setNavigationBarHidden(true, animated: false)
+        resultVC.reactor = ResultViewReactor(gameVM: self.gameVM)
+        
+        return resultVC
+    }
+    
+    func updateUIViewController(_ uiViewController: ResultViewController, context: Context) {
+        
     }
 }

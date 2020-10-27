@@ -31,6 +31,23 @@ struct Game: Identifiable {
         self.type = type
         self.createdAt = createdAt
     }
+    
+    func toGameViewModel() -> GameViewModel {
+        let gameVM = GameViewModel()
+        gameVM.cost = cost
+        gameVM.targetCount = targetCount
+        gameVM.players = players
+        gameVM.playerCount = players.count
+        
+        switch type {
+        case .classic:
+            gameVM.playStrategy = ClassicStrategy()
+        case .ladder:
+            gameVM.playStrategy = LadderStrategy()
+        }
+        
+        return gameVM
+    }
 }
 
 protocol Gamable {
@@ -127,15 +144,15 @@ class GameListCellViewModel {
         }
     }
     var targetCount: String {
-        return "🎯\(game.targetCount)명"
+        return "🎯\t\(game.targetCount)명"
     }
     
     var cost: String {
-        return "💸 \(Helper.getCurrencyString(from: game.cost))"
+        return "💸\t\(Helper.getCurrencyString(from: game.cost))"
     }
     
     var playerCount: String {
-        return "🤦🏻‍♂️\(game.players.count)명"
+        return "🤦🏻‍♂️\t\(game.players.count)명"
     }
     
     
