@@ -10,6 +10,7 @@
 		62C587C0D592FEC77BDB35CC /* Pods_RandomBBang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B001D208C0BFE65EF6ADD89 /* Pods_RandomBBang.framework */; };
 		BC9FA95525454BC900D0D8C2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC9FA95725454BC900D0D8C2 /* InfoPlist.strings */; };
 		D704EEA424B4B5850036B496 /* PlayerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D704EEA324B4B5850036B496 /* PlayerCollectionViewCell.swift */; };
+		D70A1CAC253020F400E9A33D /* GameListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70A1CAB253020F400E9A33D /* GameListView.swift */; };
 		D713A4142520CCAD004F911C /* StorableGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D713A4132520CCAD004F911C /* StorableGame.swift */; };
 		D713A4182520CD5A004F911C /* AnyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D713A4172520CD5A004F911C /* AnyRepository.swift */; };
 		D713A41E2520CD91004F911C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D713A41D2520CD91004F911C /* Player.swift */; };
@@ -61,6 +62,7 @@
 		BC9FA95A25454BF300D0D8C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BF969F92A052B2E5C9A21293 /* Pods-RandomBBangTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomBBangTests.debug.xcconfig"; path = "Target Support Files/Pods-RandomBBangTests/Pods-RandomBBangTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D704EEA324B4B5850036B496 /* PlayerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCollectionViewCell.swift; sourceTree = "<group>"; };
+		D70A1CAB253020F400E9A33D /* GameListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListView.swift; sourceTree = "<group>"; };
 		D713A4132520CCAD004F911C /* StorableGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorableGame.swift; sourceTree = "<group>"; };
 		D713A4172520CD5A004F911C /* AnyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyRepository.swift; sourceTree = "<group>"; };
 		D713A41D2520CD91004F911C /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -135,6 +137,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D70A1CAA253020D200E9A33D /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				D70A1CAB253020F400E9A33D /* GameListView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		D73A7BDA24971255006F4DD5 = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +206,7 @@
 		D7E5590524EA6FF500E4C749 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D70A1CAA253020D200E9A33D /* SwiftUI */,
 				D74781B82509FEC8004472C3 /* Cell */,
 				D7E5590124E6738B00E4C749 /* TimerViewController.swift */,
 				D72E5D612507B8AA002E2403 /* HomePagerViewController.swift */,
@@ -446,6 +457,7 @@
 				D713A4182520CD5A004F911C /* AnyRepository.swift in Sources */,
 				D7843B8F24BAE3CA00E3003E /* ResultViewController.swift in Sources */,
 				D74781B1250912BB004472C3 /* PagerContainerViewController.swift in Sources */,
+				D70A1CAC253020F400E9A33D /* GameListView.swift in Sources */,
 				D771676424972FF00015C7D9 /* ClassicGameViewController.swift in Sources */,
 				D7843B9124BAE40C00E3003E /* ResultViewReactor.swift in Sources */,
 				D7E5590424E8FA6A00E4C749 /* GADBannerBaseViewController.swift in Sources */,

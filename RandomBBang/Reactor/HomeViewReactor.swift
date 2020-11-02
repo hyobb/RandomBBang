@@ -19,6 +19,7 @@ class HomeViewReactor: Reactor {
         case costEditingDidEnd
         case increaseTarget
         case decreaseTarget
+        case play
     }
 
     enum Mutation {
@@ -28,17 +29,20 @@ class HomeViewReactor: Reactor {
         case ceilGameCost
         case increaseTargetCount
         case decreaseTargetCount
+        case playGame
     }
 
     struct State {
         var gameVM: GameViewModel
+        let gameRepository: AnyRepository<Game>
     }
     
     let initialState: State
     
     init(playStrategy: PlayStrategy) {
         self.initialState = State(
-            gameVM: GameViewModel(playStrategy: playStrategy)
+            gameVM: GameViewModel(playStrategy: playStrategy),
+            gameRepository: AnyRepository<Game>()
         )
     }
     
@@ -57,6 +61,8 @@ class HomeViewReactor: Reactor {
             return Observable.just(Mutation.increaseTargetCount)
         case .decreaseTarget:
             return Observable.just(Mutation.decreaseTargetCount)
+        case .play:
+            return Observable.just(Mutation.playGame)
         }
     }
 
@@ -97,6 +103,9 @@ class HomeViewReactor: Reactor {
         case .decreaseTargetCount:
             guard newState.gameVM.targetCount > 2 else { return newState }
             newState.gameVM.targetCount -= 1
+        case .playGame:
+            newState.gameVM.play()
+            try? newState.gameRepository.insert(item: newState.gameVM.toGame())
         }
         
         return newState

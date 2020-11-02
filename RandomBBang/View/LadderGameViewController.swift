@@ -104,8 +104,11 @@ class LadderGameViewController: GADBannerBaseViewController, View{
         startButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
-                let gameVM = reactor.currentState.gameVM
+                let currentState = reactor.currentState
+                let gameVM = currentState.gameVM
                 gameVM.play()
+                
+                try? currentState.gameRepository.insert(item: gameVM.toGame())
                 
                 self.resultViewController.reactor = ResultViewReactor(gameVM: gameVM)
                 
@@ -141,7 +144,7 @@ extension LadderGameViewController {
             make.top.equalToSuperview().offset(24)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().inset(24)
-            make.height.equalTo(400)
+            make.height.equalTo(350)
         }
         
         newGameView.playerCollectionView.register(PlayerCollectionViewCell.self, forCellWithReuseIdentifier: PlayerCollectionViewCell.reuseIdentifier)

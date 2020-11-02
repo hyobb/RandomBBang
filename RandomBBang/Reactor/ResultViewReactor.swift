@@ -33,8 +33,6 @@ class ResultViewReactor: Reactor {
             gameVM: gameVM,
             gameRepository: AnyRepository<Game>()
         )
-        
-        try? currentState.gameRepository.insert(item: currentState.gameVM.toGame())
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -50,7 +48,7 @@ class ResultViewReactor: Reactor {
         switch mutation {
         case .replayGame:
             newState.gameVM.play()
-            try? newState.gameRepository.insert(item: newState.gameVM.toGame())
+            try? newState.gameRepository.update(item: newState.gameVM.toGame())
         }
         
         return newState
