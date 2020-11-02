@@ -650,7 +650,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.2;
+				CURRENT_PROJECT_VERSION = 1.3.0;
 				DEVELOPMENT_TEAM = GE989HHXPP;
 				INFOPLIST_FILE = RandomBBang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -658,7 +658,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.StudioX.RandomBBang;
 				PRODUCT_MODULE_NAME = RandomBBang;
 				PRODUCT_NAME = RandomBBang;
@@ -673,7 +673,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2.2;
+				CURRENT_PROJECT_VERSION = 1.3.0;
 				DEVELOPMENT_TEAM = GE989HHXPP;
 				INFOPLIST_FILE = RandomBBang/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -681,7 +681,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.StudioX.RandomBBang;
 				PRODUCT_MODULE_NAME = RandomBBang;
 				PRODUCT_NAME = RandomBBang;
