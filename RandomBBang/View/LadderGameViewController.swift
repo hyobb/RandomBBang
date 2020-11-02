@@ -144,7 +144,7 @@ extension LadderGameViewController {
             make.top.equalToSuperview().offset(24)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().inset(24)
-            make.height.equalTo(400)
+            make.height.equalTo(350)
         }
         
         newGameView.playerCollectionView.register(PlayerCollectionViewCell.self, forCellWithReuseIdentifier: PlayerCollectionViewCell.reuseIdentifier)
