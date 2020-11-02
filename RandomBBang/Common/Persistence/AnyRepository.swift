@@ -22,7 +22,7 @@ class AnyRepository<RepositoryObject>: Repository
     }
 
     func getAll(where predicate: NSPredicate?) -> [RepositoryObject] {
-        var objects = realm.objects(RealmObject.self)
+        var objects = realm.objects(RealmObject.self).sorted(byKeyPath: "createdAt", ascending: false)
 
         if let predicate = predicate {
             objects = objects.filter(predicate)
@@ -37,8 +37,12 @@ class AnyRepository<RepositoryObject>: Repository
     }
 
     func update(item: RepositoryObject) throws {
-        try delete(item: item)
-        try insert(item: item)
+//        try delete(item: item)
+//        try insert(item: item)
+        print(item)
+        try! realm.write {
+            realm.add(item.toStorable(), update: .modified)
+        }
     }
 
     func delete(item: RepositoryObject) throws {

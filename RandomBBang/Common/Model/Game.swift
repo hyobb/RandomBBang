@@ -34,6 +34,7 @@ struct Game: Identifiable {
     
     func toGameViewModel() -> GameViewModel {
         let gameVM = GameViewModel()
+        gameVM.game = self
         gameVM.cost = cost
         gameVM.targetCount = targetCount
         gameVM.players = players
@@ -77,6 +78,7 @@ protocol ViewModel {
 }
 
 class GameViewModel: Gamable {
+    var game: Game?
     var cost: Int
     var targetCount: Int
     var players: [Player]
@@ -111,8 +113,14 @@ class GameViewModel: Gamable {
     }
     
     func toGame() -> Game {
+        if let game = game {
+            return game
+        }
+        
         let players = self.players.filter { !$0.isHidden }
-        return Game(cost: cost, targetCount: targetCount, players: players, type: playStrategy.type)
+        
+        self.game = Game(cost: cost, targetCount: targetCount, players: players, type: playStrategy.type)
+        return game!
     }
 }
 

@@ -37,7 +37,7 @@ class ResultViewController: GADBannerBaseViewController, View, UIGestureRecogniz
         $0.spacing = 12
         $0.distribution = .fillEqually
     }
-    private let replayButton = UIButton().then {
+    let replayButton = UIButton().then {
         $0.setTitle("다시하기", for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         $0.backgroundColor = UIColor.primaryBlue

@@ -42,9 +42,9 @@ struct GameRow: View {
                     
                     
                     VStack(alignment: .leading, spacing: 10) {
-                        Text(gameListCellVM.playerCount)
-                            .font(.subheadline)
                         Text(gameListCellVM.resultMessage)
+                            .font(.subheadline)
+                        Text(gameListCellVM.playerCount)
                             .font(.subheadline)
                     }
                 }
@@ -95,6 +95,7 @@ struct ResultView: UIViewControllerRepresentable {
         let resultVC = ResultViewController()
         resultVC.navigationController?.setNavigationBarHidden(true, animated: false)
         resultVC.reactor = ResultViewReactor(gameVM: self.gameVM)
+        resultVC.replayButton.isHidden = true
         
         return resultVC
     }
